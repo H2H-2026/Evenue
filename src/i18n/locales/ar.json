@@ -1,0 +1,353 @@
+{
+  "app": {
+    "name": "Evenue",
+    "tagline": "منصة الفعاليات والمقرّات — للإدارة والتدريب والمشاركة"
+  },
+  "common": {
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "search": "بحث",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "create": "إنشاء",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "loading": "جارٍ التحميل...",
+    "language": "اللغة",
+    "theme": "المظهر",
+    "demoMode": "وضع تجريبي"
+  },
+  "roles": {
+    "admin": "الأدمن",
+    "trainer": "المدرّب",
+    "participant": "المشارك"
+  },
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "events": "الفعاليات",
+    "sessions": "الجلسات",
+    "venues": "المقرّات",
+    "users": "المستخدمون",
+    "registrations": "التسجيلات",
+    "attendance": "الحضور",
+    "materials": "المواد التدريبية",
+    "quizzes": "الاختبارات",
+    "feedback": "التقييمات",
+    "reports": "التقارير",
+    "certificates": "الشهادات",
+    "schedule": "جدولي",
+    "myEvents": "فعالياتي"
+  },
+  "navGroups": {
+    "overview": "نظرة عامة",
+    "management": "الإدارة",
+    "people": "الأشخاص",
+    "analytics": "التحليلات",
+    "training": "التدريب",
+    "tracking": "المتابعة",
+    "journey": "رحلتي",
+    "achievements": "الإنجازات"
+  },
+  "topbar": {
+    "searchPlaceholder": "ابحث عن فعالية، جلسة، مشارك...",
+    "notifications": "الإشعارات",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "noNotifications": "لا توجد إشعارات جديدة"
+  },
+  "events": {
+    "title": "إدارة الفعاليات",
+    "subtitle": "أنشئ وتابع الفعاليات التدريبية",
+    "new": "فعالية جديدة",
+    "edit": "تعديل الفعالية",
+    "create": "إنشاء فعالية",
+    "searchPlaceholder": "ابحث باسم الفعالية...",
+    "allStatuses": "كل الحالات",
+    "count": "{{count}} فعالية",
+    "empty": "لا توجد فعاليات بعد",
+    "emptyHint": "ابدأ بإنشاء أول فعالية.",
+    "noResults": "لا توجد نتائج مطابقة للبحث",
+    "deleteTitle": "حذف الفعالية",
+    "deleteConfirm": "هل أنت متأكد من حذف \"{{title}}\"؟ لا يمكن التراجع.",
+    "saved": "تم الحفظ",
+    "fields": {
+      "title": "اسم الفعالية",
+      "description": "الوصف",
+      "startDate": "تاريخ البداية",
+      "endDate": "تاريخ النهاية",
+      "status": "الحالة"
+    },
+    "columns": {
+      "title": "الفعالية",
+      "dates": "التواريخ",
+      "status": "الحالة",
+      "actions": "إجراءات"
+    },
+    "errors": {
+      "titleRequired": "اسم الفعالية مطلوب",
+      "datesRequired": "التواريخ مطلوبة",
+      "endBeforeStart": "تاريخ النهاية يجب أن يكون بعد البداية"
+    }
+  },
+  "status": {
+    "draft": "مسودة",
+    "published": "منشور",
+    "ongoing": "جارٍ",
+    "completed": "مكتمل",
+    "cancelled": "ملغي"
+  },
+  "venues": {
+    "title": "إدارة المقرّات",
+    "subtitle": "أضف وتابع قاعات ومقرّات التدريب",
+    "new": "مقر جديد",
+    "edit": "تعديل المقر",
+    "create": "إنشاء مقر",
+    "searchPlaceholder": "ابحث باسم المقر أو المدينة...",
+    "count": "{{count}} مقر",
+    "empty": "لا توجد مقرّات بعد",
+    "emptyHint": "ابدأ بإضافة أول مقر.",
+    "noResults": "لا توجد نتائج مطابقة",
+    "deleteTitle": "حذف المقر",
+    "deleteConfirm": "هل أنت متأكد من حذف \"{{name}}\"؟ لا يمكن التراجع.",
+    "fields": {
+      "name": "اسم المقر",
+      "city": "المدينة",
+      "address": "العنوان",
+      "capacity": "السعة"
+    },
+    "columns": {
+      "name": "المقر",
+      "location": "الموقع",
+      "capacity": "السعة",
+      "actions": "إجراءات"
+    },
+    "errors": { "nameRequired": "اسم المقر مطلوب" }
+  },
+  "sessions": {
+    "title": "إدارة الجلسات",
+    "subtitle": "نظّم جلسات الفعاليات وربطها بالمقرّات",
+    "new": "جلسة جديدة",
+    "edit": "تعديل الجلسة",
+    "create": "إنشاء جلسة",
+    "searchPlaceholder": "ابحث بعنوان الجلسة...",
+    "allEvents": "كل الفعاليات",
+    "count": "{{count}} جلسة",
+    "empty": "لا توجد جلسات بعد",
+    "emptyHint": "ابدأ بإنشاء أول جلسة.",
+    "noResults": "لا توجد نتائج مطابقة",
+    "deleteTitle": "حذف الجلسة",
+    "deleteConfirm": "هل أنت متأكد من حذف \"{{title}}\"؟ لا يمكن التراجع.",
+    "noVenue": "بدون مقر",
+    "fields": {
+      "title": "عنوان الجلسة",
+      "event": "الفعالية",
+      "venue": "المقر",
+      "startsAt": "البداية",
+      "endsAt": "النهاية",
+      "capacity": "السعة"
+    },
+    "columns": {
+      "title": "الجلسة",
+      "event": "الفعالية",
+      "time": "التوقيت",
+      "venue": "المقر",
+      "actions": "إجراءات"
+    },
+    "errors": {
+      "titleRequired": "عنوان الجلسة مطلوب",
+      "eventRequired": "اختر الفعالية",
+      "timeRequired": "التوقيت مطلوب",
+      "endBeforeStart": "وقت النهاية يجب أن يكون بعد البداية"
+    }
+  },
+  "users": {
+    "title": "إدارة المستخدمين",
+    "subtitle": "أضف وأدِر حسابات المستخدمين وأدوارهم",
+    "new": "مستخدم جديد",
+    "edit": "تعديل المستخدم",
+    "create": "إنشاء مستخدم",
+    "searchPlaceholder": "ابحث بالاسم أو البريد...",
+    "allRoles": "كل الأدوار",
+    "count": "{{count}} مستخدم",
+    "empty": "لا يوجد مستخدمون بعد",
+    "emptyHint": "ابدأ بإضافة أول مستخدم.",
+    "noResults": "لا توجد نتائج مطابقة",
+    "deleteTitle": "حذف المستخدم",
+    "deleteConfirm": "هل أنت متأكد من حذف \"{{name}}\"؟ لا يمكن التراجع.",
+    "fields": { "name": "الاسم الكامل", "email": "البريد الإلكتروني", "role": "الدور" },
+    "columns": { "user": "المستخدم", "email": "البريد", "role": "الدور", "actions": "إجراءات" },
+    "errors": { "nameRequired": "الاسم مطلوب", "emailRequired": "البريد مطلوب", "emailInvalid": "بريد غير صحيح" }
+  },
+  "registrations": {
+    "title": "إدارة التسجيلات",
+    "subtitle": "راجع طلبات التسجيل واقبلها أو ارفضها",
+    "new": "تسجيل جديد",
+    "addTitle": "إضافة تسجيل",
+    "searchPlaceholder": "ابحث باسم المشارك...",
+    "allStatuses": "كل الحالات",
+    "count": "{{count}} تسجيل",
+    "empty": "لا توجد تسجيلات بعد",
+    "emptyHint": "أضف أول تسجيل.",
+    "noResults": "لا توجد نتائج مطابقة",
+    "approve": "قبول",
+    "reject": "رفض",
+    "deleteTitle": "حذف التسجيل",
+    "deleteConfirm": "هل أنت متأكد من حذف هذا التسجيل؟",
+    "fields": { "participant": "المشارك", "event": "الفعالية" },
+    "columns": { "participant": "المشارك", "event": "الفعالية", "status": "الحالة", "date": "التاريخ", "actions": "إجراءات" },
+    "errors": { "participantRequired": "اختر المشارك", "eventRequired": "اختر الفعالية" },
+    "status": { "pending": "قيد المراجعة", "approved": "مقبول", "rejected": "مرفوض", "cancelled": "ملغي" }
+  },
+  "materials": {
+    "title": "المواد التدريبية",
+    "subtitle": "أضف روابط وملفات الفعاليات",
+    "new": "مادة جديدة",
+    "edit": "تعديل المادة",
+    "create": "إضافة مادة",
+    "searchPlaceholder": "ابحث بعنوان المادة...",
+    "allEvents": "كل الفعاليات",
+    "count": "{{count}} مادة",
+    "empty": "لا توجد مواد بعد",
+    "emptyHint": "أضف أول مادة تدريبية.",
+    "noResults": "لا توجد نتائج مطابقة",
+    "open": "فتح",
+    "deleteTitle": "حذف المادة",
+    "deleteConfirm": "هل أنت متأكد من حذف \"{{title}}\"؟",
+    "fields": { "title": "العنوان", "event": "الفعالية", "type": "النوع", "url": "الرابط" },
+    "types": { "link": "رابط", "file": "ملف", "video": "فيديو" },
+    "uploading": "جاري رفع الملف...",
+    "uploaded": "تم الرفع بنجاح",
+    "uploadFailed": "فشل رفع الملف",
+    "selectFile": "اختر الملف",
+    "errors": { "titleRequired": "العنوان مطلوب", "urlRequired": "الرابط/الملف مطلوب", "eventRequired": "اختر الفعالية" }
+  },
+  "quizzes": {
+    "title": "الاختبارات",
+    "subtitle": "أنشئ اختبارات الفعاليات",
+    "new": "اختبار جديد",
+    "edit": "تعديل الاختبار",
+    "create": "إنشاء اختبار",
+    "searchPlaceholder": "ابحث بعنوان الاختبار...",
+    "count": "{{count}} اختبار",
+    "empty": "لا توجد اختبارات بعد",
+    "emptyHint": "أنشئ أول اختبار.",
+    "noResults": "لا توجد نتائج مطابقة",
+    "questions": "{{count}} سؤال",
+    "deleteTitle": "حذف الاختبار",
+    "deleteConfirm": "هل أنت متأكد من حذف \"{{title}}\"؟",
+    "fields": { "title": "العنوان", "event": "الفعالية", "description": "الوصف", "questionsCount": "عدد الأسئلة" },
+    "errors": { "titleRequired": "العنوان مطلوب", "eventRequired": "اختر الفعالية" }
+  },
+  "attendance": {
+    "title": "تسجيل الحضور",
+    "subtitle": "اختر جلسة وسجّل حضور المشاركين",
+    "selectSession": "اختر الجلسة",
+    "noSessions": "لا توجد جلسات متاحة",
+    "present": "حاضر",
+    "absent": "غائب",
+    "presentCount": "{{present}} من {{total}} حاضر",
+    "participants": "المشاركون",
+    "noParticipants": "لا يوجد مشاركين مقبولين في هذه الفعالية",
+    "scanQR": "مسح الـ QR Code",
+    "qrScannerTitle": "قارئ الـ QR لتسجيل الحضور",
+    "alreadyPresent": "المشارك حاضر بالفعل",
+    "invalidQR": "رمز QR غير صالح أو المشارك غير مسجل في هذه الفعالية",
+    "checkedIn": "تم تسجيل الحضور بنجاح",
+    "simulateScanHint": "أو قم بمحاكاة المسح باختيار مشارك:",
+    "chooseParticipant": "اختر المشارك للتحضير"
+  },
+  "certificates": {
+    "title": "الشهادات",
+    "subtitle": "إصدار ومتابعة شهادات المشاركين",
+    "issue": "إصدار شهادة",
+    "issueTitle": "إصدار شهادة جديدة",
+    "code": "رمز الشهادة",
+    "count": "{{count}} شهادة",
+    "empty": "لا توجد شهادات بعد",
+    "emptyHint": "أصدر أول شهادة.",
+    "noResults": "لا توجد نتائج مطابقة",
+    "deleteTitle": "حذف الشهادة",
+    "deleteConfirm": "هل أنت متأكد من حذف هذه الشهادة؟",
+    "download": "تحميل",
+    "fields": { "participant": "المشارك", "event": "الفعالية" },
+    "columns": { "code": "الرمز", "participant": "المشارك", "event": "الفعالية", "date": "تاريخ الإصدار", "actions": "إجراءات" },
+    "errors": { "participantRequired": "اختر المشارك", "eventRequired": "اختر الفعالية" }
+  },
+  "schedule": {
+    "title": "جدولي",
+    "subtitle": "جلساتك القادمة",
+    "empty": "لا توجد جلسات مجدولة",
+    "at": "في"
+  },
+  "reports": {
+    "title": "التقارير",
+    "subtitle": "نظرة تحليلية على الأداء",
+    "eventsByStatus": "الفعاليات حسب الحالة",
+    "registrationsByEvent": "التسجيلات حسب الفعالية",
+    "attendanceTrend": "اتجاه الحضور الأسبوعي",
+    "totalEvents": "إجمالي الفعاليات",
+    "totalUsers": "إجمالي المستخدمين",
+    "totalRegistrations": "إجمالي التسجيلات",
+    "totalCertificates": "الشهادات الصادرة"
+  },
+  "login": {
+    "title": "تسجيل الدخول",
+    "subtitle": "اختر دورك للدخول إلى المنصة",
+    "selectRole": "الدخول كـ",
+    "asAdmin": "الدخول كأدمن",
+    "asTrainer": "الدخول كمدرّب",
+    "asParticipant": "الدخول كمشارك",
+    "alreadyLoggedIn": "تم تسجيل الدخول مسبقًا",
+    "continue": "المتابعة",
+    "switchAccount": "تبديل الحساب",
+    "supabaseConnected": "متصل بـ Supabase — البيانات عبر API",
+    "demoMode": "وضع تجريبي — بيانات محلية"
+  },
+  "participant": {
+    "register": "تسجيل",
+    "registered": "تم التسجيل بنجاح",
+    "eventsSubtitle": "الفعاليات المسجّل فيها والمتاحة"
+  },
+  "feedback": {
+    "title": "التقييمات",
+    "subtitle": "تقييمات المشاركين للفعاليات",
+    "new": "تقييم جديد",
+    "avgRating": "متوسط التقييم",
+    "count": "{{count}} تقييم",
+    "empty": "لا توجد تقييمات بعد",
+    "fields": {
+      "event": "الفعالية",
+      "rating": "التقييم",
+      "comment": "تعليق",
+      "commentPlaceholder": "اكتب تعليقك هنا..."
+    },
+    "errors": {
+      "eventRequired": "اختر الفعالية",
+      "ratingRequired": "اختر التقييم"
+    }
+  },
+  "dashboard": {
+    "welcome": "مرحبًا",
+    "totalEvents": "إجمالي الفعاليات",
+    "totalParticipants": "إجمالي المشاركين",
+    "upcomingSessions": "الجلسات القادمة",
+    "attendanceRate": "معدل الحضور",
+    "recentEvents": "أحدث الفعاليات",
+    "weeklyAttendance": "الحضور الأسبوعي"
+  },
+  "profile": {
+    "subtitle": "معلومات حسابك",
+    "roleLabel": "الدور",
+    "idLabel": "المعرّف",
+    "saved": "تم حفظ التعديلات بنجاح",
+    "saveError": "فشل حفظ التعديلات"
+  },
+  "toast": {
+    "addSuccess": "تمت الإضافة بنجاح",
+    "updateSuccess": "تم التحديث بنجاح",
+    "deleteSuccess": "تم الحذف بنجاح",
+    "error": "حدث خطأ، حاول مرة أخرى"
+  }
+}

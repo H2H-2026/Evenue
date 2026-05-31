@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 256 40% 99%;
+    --foreground: 256 40% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 256 40% 12%;
+    --primary: 256 78% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 256 30% 96%;
+    --secondary-foreground: 256 40% 20%;
+    --muted: 240 20% 96%;
+    --muted-foreground: 240 8% 46%;
+    --accent: 256 40% 95%;
+    --accent-foreground: 256 40% 22%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 18% 90%;
+    --input: 240 18% 90%;
+    --ring: 256 78% 58%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 256 30% 9%;
+    --foreground: 0 0% 98%;
+    --card: 256 28% 13%;
+    --card-foreground: 0 0% 98%;
+    --primary: 258 90% 68%;
+    --primary-foreground: 256 60% 12%;
+    --secondary: 256 25% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 256 22% 20%;
+    --muted-foreground: 250 12% 68%;
+    --accent: 256 28% 24%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 63% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 256 20% 26%;
+    --input: 256 20% 26%;
+    --ring: 258 90% 68%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* بطاقة زجاجية (glassmorphism) */
+  .glass {
+    @apply border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+    box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-strong {
+    @apply border border-white/10 bg-white/[0.07] backdrop-blur-2xl;
+    box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  }
+
+  /* نص بتدرّج العلامة */
+  .text-gradient {
+    @apply bg-gradient-to-br from-indigo-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent;
+  }
+
+  /* توهج العنصر */
+  .glow-ring {
+    box-shadow: 0 0 0 1px hsl(var(--border)), 0 10px 40px -10px hsl(258 90% 60% / 0.4);
+  }
+}
+
+@layer utilities {
+  /* خلفية aurora متحركة */
+  .aurora-bg {
+    position: relative;
+    overflow: hidden;
+  }
+  .aurora-bg::before,
+  .aurora-bg::after {
+    content: "";
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .aurora-bg::before {
+    width: 38rem;
+    height: 38rem;
+    top: -10rem;
+    inset-inline-start: -8rem;
+    background: radial-gradient(circle at center, #6366f1, transparent 65%);
+    animation: aurora 18s ease-in-out infinite;
+  }
+  .aurora-bg::after {
+    width: 34rem;
+    height: 34rem;
+    bottom: -12rem;
+    inset-inline-end: -6rem;
+    background: radial-gradient(circle at center, #9333ea, transparent 65%);
+    animation: aurora 22s ease-in-out infinite reverse;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .no-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 9999px;
+  }
+}

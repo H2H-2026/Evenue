@@ -1,0 +1,354 @@
+{
+  "app": {
+    "name": "Evenue",
+    "tagline": "Where events meet their venue — manage, train, attend"
+  },
+  "common": {
+    "login": "Login",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "search": "Search",
+    "save": "Save",
+    "cancel": "Cancel",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "language": "Language",
+    "theme": "Theme",
+    "demoMode": "Demo mode"
+  },
+  "roles": {
+    "admin": "Admin",
+    "trainer": "Trainer",
+    "participant": "Participant"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "events": "Events",
+    "sessions": "Sessions",
+    "venues": "Venues",
+    "venuesShort": "Venues",
+    "users": "Users",
+    "registrations": "Registrations",
+    "attendance": "Attendance",
+    "materials": "Materials",
+    "quizzes": "Quizzes",
+    "feedback": "Feedback",
+    "reports": "Reports",
+    "certificates": "Certificates",
+    "schedule": "My Schedule",
+    "myEvents": "My Events"
+  },
+  "navGroups": {
+    "overview": "Overview",
+    "management": "Management",
+    "people": "People",
+    "analytics": "Analytics",
+    "training": "Training",
+    "tracking": "Tracking",
+    "journey": "My Journey",
+    "achievements": "Achievements"
+  },
+  "topbar": {
+    "searchPlaceholder": "Search events, sessions, participants...",
+    "notifications": "Notifications",
+    "profile": "Profile",
+    "settings": "Settings",
+    "noNotifications": "No new notifications"
+  },
+  "events": {
+    "title": "Events Management",
+    "subtitle": "Create and manage training events",
+    "new": "New Event",
+    "edit": "Edit Event",
+    "create": "Create Event",
+    "searchPlaceholder": "Search by event title...",
+    "allStatuses": "All statuses",
+    "count": "{{count}} events",
+    "empty": "No events yet",
+    "emptyHint": "Start by creating your first event.",
+    "noResults": "No matching results",
+    "deleteTitle": "Delete event",
+    "deleteConfirm": "Are you sure you want to delete \"{{title}}\"? This cannot be undone.",
+    "saved": "Saved",
+    "fields": {
+      "title": "Event title",
+      "description": "Description",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "status": "Status"
+    },
+    "columns": {
+      "title": "Event",
+      "dates": "Dates",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "errors": {
+      "titleRequired": "Title is required",
+      "datesRequired": "Dates are required",
+      "endBeforeStart": "End date must be after start date"
+    }
+  },
+  "status": {
+    "draft": "Draft",
+    "published": "Published",
+    "ongoing": "Ongoing",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  },
+  "venues": {
+    "title": "Venues Management",
+    "subtitle": "Add and manage training venues",
+    "new": "New Venue",
+    "edit": "Edit Venue",
+    "create": "Create Venue",
+    "searchPlaceholder": "Search by name or city...",
+    "count": "{{count}} venues",
+    "empty": "No venues yet",
+    "emptyHint": "Start by adding your first venue.",
+    "noResults": "No matching results",
+    "deleteTitle": "Delete venue",
+    "deleteConfirm": "Are you sure you want to delete \"{{name}}\"? This cannot be undone.",
+    "fields": {
+      "name": "Venue name",
+      "city": "City",
+      "address": "Address",
+      "capacity": "Capacity"
+    },
+    "columns": {
+      "name": "Venue",
+      "location": "Location",
+      "capacity": "Capacity",
+      "actions": "Actions"
+    },
+    "errors": { "nameRequired": "Name is required" }
+  },
+  "sessions": {
+    "title": "Sessions Management",
+    "subtitle": "Organize event sessions and link venues",
+    "new": "New Session",
+    "edit": "Edit Session",
+    "create": "Create Session",
+    "searchPlaceholder": "Search by session title...",
+    "allEvents": "All events",
+    "count": "{{count}} sessions",
+    "empty": "No sessions yet",
+    "emptyHint": "Start by creating your first session.",
+    "noResults": "No matching results",
+    "deleteTitle": "Delete session",
+    "deleteConfirm": "Are you sure you want to delete \"{{title}}\"? This cannot be undone.",
+    "noVenue": "No venue",
+    "fields": {
+      "title": "Session title",
+      "event": "Event",
+      "venue": "Venue",
+      "startsAt": "Starts at",
+      "endsAt": "Ends at",
+      "capacity": "Capacity"
+    },
+    "columns": {
+      "title": "Session",
+      "event": "Event",
+      "time": "Time",
+      "venue": "Venue",
+      "actions": "Actions"
+    },
+    "errors": {
+      "titleRequired": "Title is required",
+      "eventRequired": "Select an event",
+      "timeRequired": "Time is required",
+      "endBeforeStart": "End time must be after start time"
+    }
+  },
+  "users": {
+    "title": "Users Management",
+    "subtitle": "Add and manage user accounts and roles",
+    "new": "New User",
+    "edit": "Edit User",
+    "create": "Create User",
+    "searchPlaceholder": "Search by name or email...",
+    "allRoles": "All roles",
+    "count": "{{count}} users",
+    "empty": "No users yet",
+    "emptyHint": "Start by adding your first user.",
+    "noResults": "No matching results",
+    "deleteTitle": "Delete user",
+    "deleteConfirm": "Are you sure you want to delete \"{{name}}\"? This cannot be undone.",
+    "fields": { "name": "Full name", "email": "Email", "role": "Role" },
+    "columns": { "user": "User", "email": "Email", "role": "Role", "actions": "Actions" },
+    "errors": { "nameRequired": "Name is required", "emailRequired": "Email is required", "emailInvalid": "Invalid email" }
+  },
+  "registrations": {
+    "title": "Registrations",
+    "subtitle": "Review registration requests, approve or reject",
+    "new": "New Registration",
+    "addTitle": "Add Registration",
+    "searchPlaceholder": "Search by participant name...",
+    "allStatuses": "All statuses",
+    "count": "{{count}} registrations",
+    "empty": "No registrations yet",
+    "emptyHint": "Add your first registration.",
+    "noResults": "No matching results",
+    "approve": "Approve",
+    "reject": "Reject",
+    "deleteTitle": "Delete registration",
+    "deleteConfirm": "Are you sure you want to delete this registration?",
+    "fields": { "participant": "Participant", "event": "Event" },
+    "columns": { "participant": "Participant", "event": "Event", "status": "Status", "date": "Date", "actions": "Actions" },
+    "errors": { "participantRequired": "Select a participant", "eventRequired": "Select an event" },
+    "status": { "pending": "Pending", "approved": "Approved", "rejected": "Rejected", "cancelled": "Cancelled" }
+  },
+  "materials": {
+    "title": "Training Materials",
+    "subtitle": "Add links and files for events",
+    "new": "New Material",
+    "edit": "Edit Material",
+    "create": "Add Material",
+    "searchPlaceholder": "Search by material title...",
+    "allEvents": "All events",
+    "count": "{{count}} materials",
+    "empty": "No materials yet",
+    "emptyHint": "Add your first material.",
+    "noResults": "No matching results",
+    "open": "Open",
+    "deleteTitle": "Delete material",
+    "deleteConfirm": "Are you sure you want to delete \"{{title}}\"?",
+    "fields": { "title": "Title", "event": "Event", "type": "Type", "url": "URL" },
+    "types": { "link": "Link", "file": "File", "video": "Video" },
+    "uploading": "Uploading file...",
+    "uploaded": "Uploaded successfully",
+    "uploadFailed": "Failed to upload file",
+    "selectFile": "Choose file",
+    "errors": { "titleRequired": "Title is required", "urlRequired": "URL/File is required", "eventRequired": "Select an event" }
+  },
+  "quizzes": {
+    "title": "Quizzes",
+    "subtitle": "Create event quizzes",
+    "new": "New Quiz",
+    "edit": "Edit Quiz",
+    "create": "Create Quiz",
+    "searchPlaceholder": "Search by quiz title...",
+    "count": "{{count}} quizzes",
+    "empty": "No quizzes yet",
+    "emptyHint": "Create your first quiz.",
+    "noResults": "No matching results",
+    "questions": "{{count}} questions",
+    "deleteTitle": "Delete quiz",
+    "deleteConfirm": "Are you sure you want to delete \"{{title}}\"?",
+    "fields": { "title": "Title", "event": "Event", "description": "Description", "questionsCount": "Questions count" },
+    "errors": { "titleRequired": "Title is required", "eventRequired": "Select an event" }
+  },
+  "attendance": {
+    "title": "Attendance",
+    "subtitle": "Pick a session and mark participants",
+    "selectSession": "Select session",
+    "noSessions": "No sessions available",
+    "present": "Present",
+    "absent": "Absent",
+    "presentCount": "{{present}} of {{total}} present",
+    "participants": "Participants",
+    "noParticipants": "No approved participants for this event",
+    "scanQR": "Scan QR Code",
+    "qrScannerTitle": "Attendance QR Code Scanner",
+    "alreadyPresent": "Participant is already present",
+    "invalidQR": "Invalid QR code or participant not registered for this event",
+    "checkedIn": "Successfully checked in",
+    "simulateScanHint": "Or simulate scanning by choosing a participant:",
+    "chooseParticipant": "Choose participant"
+  },
+  "certificates": {
+    "title": "Certificates",
+    "subtitle": "Issue and track participant certificates",
+    "issue": "Issue Certificate",
+    "issueTitle": "Issue New Certificate",
+    "code": "Certificate code",
+    "count": "{{count}} certificates",
+    "empty": "No certificates yet",
+    "emptyHint": "Issue your first certificate.",
+    "noResults": "No matching results",
+    "deleteTitle": "Delete certificate",
+    "deleteConfirm": "Are you sure you want to delete this certificate?",
+    "download": "Download",
+    "fields": { "participant": "Participant", "event": "Event" },
+    "columns": { "code": "Code", "participant": "Participant", "event": "Event", "date": "Issued at", "actions": "Actions" },
+    "errors": { "participantRequired": "Select a participant", "eventRequired": "Select an event" }
+  },
+  "schedule": {
+    "title": "My Schedule",
+    "subtitle": "Your upcoming sessions",
+    "empty": "No scheduled sessions",
+    "at": "at"
+  },
+  "reports": {
+    "title": "Reports",
+    "subtitle": "Analytical performance overview",
+    "eventsByStatus": "Events by status",
+    "registrationsByEvent": "Registrations by event",
+    "attendanceTrend": "Weekly attendance trend",
+    "totalEvents": "Total events",
+    "totalUsers": "Total users",
+    "totalRegistrations": "Total registrations",
+    "totalCertificates": "Certificates issued"
+  },
+  "login": {
+    "title": "Sign in",
+    "subtitle": "Choose your role to enter the platform",
+    "selectRole": "Sign in as",
+    "asAdmin": "Sign in as Admin",
+    "asTrainer": "Sign in as Trainer",
+    "asParticipant": "Sign in as Participant",
+    "alreadyLoggedIn": "Already signed in",
+    "continue": "Continue",
+    "switchAccount": "Switch account",
+    "supabaseConnected": "Supabase Connected — Data via API",
+    "demoMode": "Demo Mode — Local data"
+  },
+  "participant": {
+    "register": "Register",
+    "registered": "Registered successfully",
+    "eventsSubtitle": "Your registered and available events"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "subtitle": "Participant evaluations for events",
+    "new": "New Feedback",
+    "avgRating": "Average Rating",
+    "count": "{{count}} reviews",
+    "empty": "No feedback yet",
+    "fields": {
+      "event": "Event",
+      "rating": "Rating",
+      "comment": "Comment",
+      "commentPlaceholder": "Write your feedback here..."
+    },
+    "errors": {
+      "eventRequired": "Select an event",
+      "ratingRequired": "Select a rating"
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "totalEvents": "Total Events",
+    "totalParticipants": "Total Participants",
+    "upcomingSessions": "Upcoming Sessions",
+    "attendanceRate": "Attendance Rate",
+    "recentEvents": "Recent Events",
+    "weeklyAttendance": "Weekly Attendance"
+  },
+  "profile": {
+    "subtitle": "Your account info",
+    "roleLabel": "Role",
+    "idLabel": "User ID",
+    "saved": "Changes saved successfully",
+    "saveError": "Failed to save changes"
+  },
+  "toast": {
+    "addSuccess": "Added successfully",
+    "updateSuccess": "Updated successfully",
+    "deleteSuccess": "Deleted successfully",
+    "error": "Something went wrong, try again"
+  }
+}
