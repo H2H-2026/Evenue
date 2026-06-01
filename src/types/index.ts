@@ -70,6 +70,7 @@ export interface Material {
   title: string;
   type: MaterialType;
   url: string;
+  access?: "public" | "restricted";
 }
 
 export interface Quiz {

@@ -17,6 +17,9 @@ export function StatusBadge({ status, label }: { status: EventStatus; label: str
         STATUS_STYLES[status],
       )}
     >
+      {status === "ongoing" && (
+        <span className="me-1.5 h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-glow" />
+      )}
       {label}
     </span>
   );

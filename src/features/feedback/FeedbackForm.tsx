@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useTranslation } from "react-i18next";
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +11,14 @@ import { Select } from "@/components/ui/select";
 import { useEvents } from "@/stores/events";
 import type { FeedbackInput } from "@/stores/feedback";
 import { cn } from "@/lib/utils";
+
+const schema = z.object({
+  eventId: z.string().min(1, "eventRequired"),
+  rating: z.coerce.number().int().min(1, "ratingRequired").max(5),
+  comment: z.string().optional(),
+});
+
+type FormValues = z.infer<typeof schema>;
 
 export function FeedbackForm({
   participantId,
@@ -21,28 +32,44 @@ export function FeedbackForm({
   const { t } = useTranslation();
   const { events } = useEvents();
 
-  const [eventId, setEventId] = useState("");
-  const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
-  const [comment, setComment] = useState("");
-  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = () => {
-    if (!eventId) return setError(t("feedback.errors.eventRequired"));
-    if (rating < 1) return setError(t("feedback.errors.ratingRequired"));
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      eventId: "",
+      rating: 0,
+      comment: "",
+    },
+  });
+
+  const rating = watch("rating");
+
+  const submitForm = (v: FormValues) => {
     onSubmit({
-      eventId,
+      eventId: v.eventId,
       participantId,
-      rating,
-      comment: comment.trim() || undefined,
+      rating: v.rating,
+      comment: v.comment?.trim() || undefined,
     });
   };
 
+  const err = (key?: string) => {
+    if (!key) return undefined;
+    return t(`feedback.errors.${key}`) || key;
+  };
+
   return (
-    <div className="space-y-4">
+    <form onSubmit={handleSubmit(submitForm)} className="space-y-4">
       <div>
-        <Label>{t("feedback.fields.event")}</Label>
-        <Select value={eventId} onChange={(e) => setEventId(e.target.value)}>
+        <Label htmlFor="eventId">{t("feedback.fields.event")}</Label>
+        <Select id="eventId" {...register("eventId")}>
           <option value="">—</option>
           {events
             .filter((e) => e.status === "ongoing" || e.status === "completed")
@@ -52,6 +79,7 @@ export function FeedbackForm({
               </option>
             ))}
         </Select>
+        {errors.eventId && <p className="mt-1 text-xs text-red-400">{err(errors.eventId.message)}</p>}
       </div>
 
       <div>
@@ -63,7 +91,7 @@ export function FeedbackForm({
               type="button"
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(0)}
-              onClick={() => setRating(i)}
+              onClick={() => setValue("rating", i, { shouldValidate: true })}
               className="rounded p-0.5 transition-transform hover:scale-110"
             >
               <Star
@@ -80,26 +108,27 @@ export function FeedbackForm({
             <span className="ms-2 text-sm font-medium text-amber-300">{rating}/5</span>
           )}
         </div>
+        {errors.rating && <p className="mt-1 text-xs text-red-400">{err(errors.rating.message)}</p>}
       </div>
 
       <div>
-        <Label>{t("feedback.fields.comment")}</Label>
+        <Label htmlFor="comment">{t("feedback.fields.comment")}</Label>
         <Textarea
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
+          id="comment"
+          {...register("comment")}
           placeholder={t("feedback.fields.commentPlaceholder")}
           rows={3}
         />
       </div>
 
-      {error && <p className="text-xs text-red-400">{error}</p>}
-
       <div className="flex justify-end gap-2 pt-2">
         <Button type="button" variant="ghost" onClick={onCancel}>
           {t("common.cancel")}
         </Button>
-        <Button onClick={handleSubmit}>{t("common.save")}</Button>
+        <Button type="submit" disabled={isSubmitting}>
+          {t("common.save")}
+        </Button>
       </div>
-    </div>
+    </form>
   );
 }

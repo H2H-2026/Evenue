@@ -19,6 +19,7 @@ const schema = z.object({
   eventId: z.string().min(1, "eventRequired"),
   type: z.enum(["link", "file", "video"]),
   url: z.string().min(1, "urlRequired"),
+  access: z.enum(["public", "restricted"]),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -50,6 +51,7 @@ export function MaterialForm({
       eventId: initial?.eventId ?? "",
       type: initial?.type ?? "link",
       url: initial?.url ?? "",
+      access: initial?.access ?? "public",
     },
   });
 
@@ -134,6 +136,17 @@ export function MaterialForm({
           <Input id="url" {...register("url")} placeholder={selectedType === "video" ? "https://youtube.com/..." : "https://..."} />
         )}
         {errors.url && <p className="mt-1 text-xs text-red-400">{err(errors.url.message)}</p>}
+      </div>
+      <div>
+        <Label htmlFor="access">{t("materials.fields.access") || "صلاحية الوصول للمادة"}</Label>
+        <Select id="access" {...register("access")}>
+          <option value="public">
+            {t("materials.access.public") || "عام / مفتوح المصدر (يمكن للجميع القراءة والتحميل)"}
+          </option>
+          <option value="restricted">
+            {t("materials.access.restricted") || "مقيد / محمي (قراءة تفاعلية + علامة مائية + طباعة مقفلة)"}
+          </option>
+        </Select>
       </div>
       <div className="flex justify-end gap-2 pt-2">
         <Button type="button" variant="ghost" onClick={onCancel}>

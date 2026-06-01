@@ -335,14 +335,22 @@
     "upcomingSessions": "الجلسات القادمة",
     "attendanceRate": "معدل الحضور",
     "recentEvents": "أحدث الفعاليات",
-    "weeklyAttendance": "الحضور الأسبوعي"
+    "weeklyAttendance": "الحضور الأسبوعي",
+    "upcomingEvent": "الفعالية القادمة",
+    "days": "أيام",
+    "hours": "ساعات",
+    "minutes": "دقائق",
+    "seconds": "ثواني"
   },
   "profile": {
     "subtitle": "معلومات حسابك",
     "roleLabel": "الدور",
     "idLabel": "المعرّف",
     "saved": "تم حفظ التعديلات بنجاح",
-    "saveError": "فشل حفظ التعديلات"
+    "saveError": "فشل حفظ التعديلات",
+    "errors": {
+      "nameRequired": "الاسم مطلوب"
+    }
   },
   "toast": {
     "addSuccess": "تمت الإضافة بنجاح",

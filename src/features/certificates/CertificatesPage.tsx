@@ -1,4 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Plus, Search, Download, Trash2, Award, FileBadge } from "lucide-react";
@@ -14,6 +17,13 @@ import { useUsers } from "@/stores/users";
 import { useEvents } from "@/stores/events";
 import { useRegistrations } from "@/stores/registrations";
 
+const schema = z.object({
+  participantId: z.string().min(1, "participantRequired"),
+  eventId: z.string().min(1, "eventRequired"),
+});
+
+type FormValues = z.infer<typeof schema>;
+
 export function CertificatesPage({ readOnly = false, participantId }: { readOnly?: boolean; participantId?: string }) {
   const { t } = useTranslation();
   const { certificates, issue, remove } = useCertificates();
@@ -27,9 +37,19 @@ export function CertificatesPage({ readOnly = false, participantId }: { readOnly
 
   const [query, setQuery] = useState("");
   const [addOpen, setAddOpen] = useState(false);
-  const [newParticipant, setNewParticipant] = useState("");
-  const [newEvent, setNewEvent] = useState("");
-  const [addError, setAddError] = useState<string | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      participantId: "",
+      eventId: "",
+    },
+  });
 
   // For admin: show all; for participant: filter by participantId
   const filtered = useMemo(() => {
@@ -54,14 +74,195 @@ export function CertificatesPage({ readOnly = false, participantId }: { readOnly
     return users.filter((u) => u.role === "participant" && approvedIds.has(u.id));
   }, [users, registrations]);
 
-  const handleIssue = () => {
-    if (!newParticipant) return setAddError(t("certificates.errors.participantRequired"));
-    if (!newEvent) return setAddError(t("certificates.errors.eventRequired"));
-    issue({ participantId: newParticipant, eventId: newEvent });
+  const onSubmit = (data: FormValues) => {
+    issue({ participantId: data.participantId, eventId: data.eventId });
     setAddOpen(false);
-    setNewParticipant("");
-    setNewEvent("");
-    setAddError(null);
+    reset();
+  };
+
+  const handleDownload = (c: any) => {
+    const participantName = userName(c.participantId);
+    const eventName = eventTitle(c.eventId);
+    const issuedDate = c.issuedAt;
+    const verificationUrl = `${window.location.origin}/verify-certificate?code=${c.code}`;
+    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(verificationUrl)}`;
+
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) return;
+
+    printWindow.document.write(`
+      <html dir="rtl">
+        <head>
+          <title>شهادة اجتياز - ${participantName}</title>
+          <style>
+            @page {
+              size: A4 landscape;
+              margin: 0;
+            }
+            body {
+              margin: 0;
+              padding: 0;
+              font-family: 'Cairo', 'Tajawal', system-ui, -apple-system, sans-serif;
+              background-color: #f8fafc;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              direction: rtl;
+              -webkit-print-color-adjust: exact;
+              print-color-adjust: exact;
+            }
+            .certificate-container {
+              width: 297mm;
+              height: 210mm;
+              background: #ffffff;
+              box-sizing: border-box;
+              padding: 2.5rem;
+              position: relative;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              border: 16px double #6366f1;
+              box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            }
+            .certificate-container::before {
+              content: "";
+              position: absolute;
+              top: 0; left: 0; right: 0; bottom: 0;
+              border: 2px solid #8b5cf6;
+              margin: 4px;
+              pointer-events: none;
+            }
+            .header {
+              text-align: center;
+              margin-top: 1.5rem;
+            }
+            .brand-logo {
+              color: #4f46e5;
+              font-size: 2.25rem;
+              font-weight: 900;
+              letter-spacing: -0.05em;
+              margin-bottom: 0.5rem;
+            }
+            .cert-title {
+              font-size: 2.5rem;
+              font-weight: 800;
+              color: #1e1b4b;
+              margin: 1.5rem 0 0.5rem;
+              letter-spacing: 0.05em;
+            }
+            .subtitle {
+              font-size: 1.1rem;
+              color: #475569;
+              margin-bottom: 2rem;
+            }
+            .recipient-name {
+              font-size: 2.75rem;
+              font-weight: 900;
+              color: #6366f1;
+              margin: 1rem 0;
+              border-bottom: 2px dashed #cbd5e1;
+              display: inline-block;
+              padding-bottom: 0.5rem;
+              min-width: 50%;
+            }
+            .statement {
+              font-size: 1.25rem;
+              color: #334155;
+              max-w: 80%;
+              margin: 1rem auto;
+              line-height: 1.8;
+            }
+            .event-name {
+              font-weight: 800;
+              color: #1e1b4b;
+            }
+            .footer-section {
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-end;
+              margin-top: 2rem;
+              padding: 0 2rem;
+            }
+            .signature-block {
+              text-align: center;
+              border-top: 1px solid #cbd5e1;
+              padding-top: 0.5rem;
+              width: 180px;
+            }
+            .signature-title {
+              font-size: 0.9rem;
+              color: #1e1b4b;
+              font-weight: bold;
+            }
+            .signature-dept {
+              font-size: 0.75rem;
+              color: #64748b;
+            }
+            .qr-block {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 0.25rem;
+            }
+            .qr-image {
+              width: 85px;
+              height: 85px;
+              border: 1px solid #e2e8f0;
+              padding: 2px;
+              background: #fff;
+            }
+            .verification-text {
+              font-size: 0.65rem;
+              color: #64748b;
+              font-family: monospace;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="certificate-container">
+            <div class="header">
+              <div class="brand-logo">Evenue</div>
+              <div class="cert-title">شهادة اجتياز برنامج تدريبي</div>
+              <div class="subtitle">تُمنح هذه الشهادة رسمياً إلى المتميز/ة:</div>
+            </div>
+
+            <div style="text-align: center;">
+              <div class="recipient-name">${participantName}</div>
+              <div class="statement">
+                وذلك تقديراً لحضوره واجتيازه الفعالية التدريبية المعتمدة بنجاح:<br>
+                <span class="event-name">«${eventName}»</span>
+              </div>
+            </div>
+
+            <div class="footer-section">
+              <div class="signature-block">
+                <div style="font-family: 'Georgia', serif; font-style: italic; color: #4f46e5; margin-bottom: 0.25rem; font-size: 1.1rem;">Evenue Admin</div>
+                <div class="signature-title">إدارة التدريب والبرامج</div>
+                <div class="signature-dept">منصة Evenue العالمية</div>
+              </div>
+
+              <div style="text-align: center;">
+                <p style="font-size: 0.8rem; color: #64748b; margin: 0 0 0.25rem 0;">تاريخ الإصدار</p>
+                <p style="font-size: 0.95rem; font-weight: bold; color: #1e1b4b; margin: 0;">${issuedDate}</p>
+              </div>
+
+              <div class="qr-block">
+                <img class="qr-image" src="${qrCodeUrl}" alt="Verification QR Code" />
+                <span class="verification-text">${c.code}</span>
+                <span style="font-size: 0.6rem; color: #94a3b8;">امسح للتحقق من الصلاحية</span>
+              </div>
+            </div>
+          </div>
+          <script>
+            window.onload = function() {
+              window.print();
+            };
+          </script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
   };
 
   return (
@@ -109,7 +310,7 @@ export function CertificatesPage({ readOnly = false, participantId }: { readOnly
                     <p><span className="text-foreground">{t("certificates.columns.event")}:</span> {eventTitle(c.eventId)}</p>
                     <p className="mt-1 text-xs">{c.issuedAt}</p>
                   </div>
-                  <Button variant="outline" size="sm" className="mt-auto" onClick={() => alert(t("certificates.download") + ": " + c.code)}>
+                  <Button variant="outline" size="sm" className="mt-auto" onClick={() => handleDownload(c)}>
                     <Download className="h-4 w-4" /><span className="ms-2">{t("certificates.download")}</span>
                   </Button>
                 </div>
@@ -120,28 +321,37 @@ export function CertificatesPage({ readOnly = false, participantId }: { readOnly
       )}
 
       {!readOnly && (
-        <Dialog open={addOpen} onClose={() => setAddOpen(false)} title={t("certificates.issueTitle")}>
-          <div className="space-y-4">
+        <Dialog open={addOpen} onClose={() => { setAddOpen(false); reset(); }} title={t("certificates.issueTitle")}>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-              <Label>{t("certificates.fields.participant")}</Label>
-              <Select value={newParticipant} onChange={(e) => setNewParticipant(e.target.value)}>
+              <Label htmlFor="participant">{t("certificates.fields.participant")}</Label>
+              <Select id="participant" {...register("participantId")}>
                 <option value="">—</option>
                 {approvedParticipants.map((p) => (<option key={p.id} value={p.id}>{p.fullName}</option>))}
               </Select>
+              {errors.participantId && (
+                <p className="mt-1 text-xs text-red-400">
+                  {t(`certificates.errors.${errors.participantId.message}`) || errors.participantId.message}
+                </p>
+              )}
             </div>
             <div>
-              <Label>{t("certificates.fields.event")}</Label>
-              <Select value={newEvent} onChange={(e) => setNewEvent(e.target.value)}>
+              <Label htmlFor="event">{t("certificates.fields.event")}</Label>
+              <Select id="event" {...register("eventId")}>
                 <option value="">—</option>
                 {events.map((e) => (<option key={e.id} value={e.id}>{e.title}</option>))}
               </Select>
+              {errors.eventId && (
+                <p className="mt-1 text-xs text-red-400">
+                  {t(`certificates.errors.${errors.eventId.message}`) || errors.eventId.message}
+                </p>
+              )}
             </div>
-            {addError && <p className="text-xs text-red-400">{addError}</p>}
             <div className="flex justify-end gap-2 pt-2">
-              <Button variant="ghost" onClick={() => setAddOpen(false)}>{t("common.cancel")}</Button>
-              <Button onClick={handleIssue}>{t("common.save")}</Button>
+              <Button variant="ghost" type="button" onClick={() => { setAddOpen(false); reset(); }}>{t("common.cancel")}</Button>
+              <Button type="submit">{t("common.save")}</Button>
             </div>
-          </div>
+          </form>
         </Dialog>
       )}
     </div>

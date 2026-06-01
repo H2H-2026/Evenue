@@ -5,12 +5,13 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { PageHeader } from "@/components/PageHeader";
 import { StatCard } from "@/components/StatCard";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { useEvents } from "@/stores/events";
 import { useUsers } from "@/stores/users";
 import { useRegistrations } from "@/stores/registrations";
 import { useCertificates } from "@/stores/certificates";
 import { useAttendance } from "@/stores/attendance";
-import { Calendar, Users, ClipboardList, Award } from "lucide-react";
+import { Calendar, Users, ClipboardList, Award, Download, Printer } from "lucide-react";
 
 const COLORS = ["#6366F1", "#8B5CF6", "#A855F7", "#EC4899", "#F43F5E"];
 
@@ -29,6 +30,37 @@ export function ReportsPage() {
     fetchCertificates();
     fetchAttendance();
   }, [fetchEvents, fetchUsers, fetchRegistrations, fetchCertificates, fetchAttendance]);
+
+  const handleExportCSV = () => {
+    const headers = ["اسم المتدرب", "البريد الإلكتروني", "البرنامج التدريبي", "الحالة", "تاريخ التسجيل"];
+    const rows = registrations.map((r) => {
+      const u = users.find((user) => user.id === r.participantId);
+      const e = events.find((ev) => ev.id === r.eventId);
+      return [
+        u?.fullName || "—",
+        u?.email || "—",
+        e?.title || "—",
+        t(`registrations.status.${r.status}`),
+        r.createdAt || "—",
+      ];
+    });
+
+    let csvContent = "\uFEFF"; // UTF-8 BOM for Excel Arabic support
+    csvContent += [headers, ...rows].map((e) => e.map((val) => `"${val.replace(/"/g, '""')}"`).join(",")).join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `تقرير_التسجيلات_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handlePrint = () => {
+    window.print();
+  };
 
   const eventsByStatus = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -60,7 +92,31 @@ export function ReportsPage() {
 
   return (
     <div>
-      <PageHeader title={t("reports.title")} description={t("reports.subtitle")} />
+      <PageHeader
+        title={t("reports.title")}
+        description={t("reports.subtitle")}
+        action={
+          <div className="flex gap-2 print:hidden">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleExportCSV}
+              className="gap-1 bg-white/5 hover:bg-white/10 text-foreground border-white/10"
+            >
+              <Download className="h-4 w-4" />
+              <span>{t("reports.exportCSV") || "تصدير CSV"}</span>
+            </Button>
+            <Button
+              size="sm"
+              onClick={handlePrint}
+              className="gap-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow-glow-sm"
+            >
+              <Printer className="h-4 w-4" />
+              <span>{t("reports.printReport") || "طباعة التقرير"}</span>
+            </Button>
+          </div>
+        }
+      />
 
       <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>

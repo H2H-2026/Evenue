@@ -16,14 +16,16 @@ export function ParticipantDashboard() {
   const { t } = useTranslation();
   const { user } = useAuth();
   const { events, fetch: fetchEvents } = useEvents();
-  const { registrations } = useRegistrations();
-  const { certificates } = useCertificates();
+  const { registrations, fetch: fetchRegistrations } = useRegistrations();
+  const { certificates, fetch: fetchCertificates } = useCertificates();
 
   const [selectedTicketEventId, setSelectedTicketEventId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchEvents();
-  }, [fetchEvents]);
+    fetchRegistrations();
+    fetchCertificates();
+  }, [fetchEvents, fetchRegistrations, fetchCertificates]);
 
   const participantId = user?.id;
 
@@ -43,6 +45,69 @@ export function ParticipantDashboard() {
     [events, myEventIds],
   );
 
+  // Find the next upcoming approved event
+  const nextEvent = useMemo(() => {
+    const approvedEvents = myEvents.filter((e) => {
+      const reg = myRegistrations.find((r) => r.eventId === e.id);
+      return reg?.status === "approved" && new Date(e.startDate).getTime() > Date.now();
+    });
+    return approvedEvents.sort(
+      (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+    )[0];
+  }, [myEvents, myRegistrations]);
+
+  const [timeLeft, setTimeLeft] = useState<{
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  } | null>(null);
+
+  useEffect(() => {
+    if (!nextEvent) {
+      setTimeLeft(null);
+      return;
+    }
+    const target = new Date(nextEvent.startDate).getTime();
+    const update = () => {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      setTimeLeft({ days, hours, minutes, seconds });
+    };
+    update();
+    const interval = setInterval(update, 1000);
+    return () => clearInterval(interval);
+  }, [nextEvent]);
+
+  const [tiltStyle, setTiltStyle] = useState<React.CSSProperties>({});
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const box = card.getBoundingClientRect();
+    const x = e.clientX - box.left - box.width / 2;
+    const y = e.clientY - box.top - box.height / 2;
+    const rotateX = -y / (box.height / 30);
+    const rotateY = x / (box.width / 30);
+    setTiltStyle({
+      transform: `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+      transition: "transform 0.1s ease-out",
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTiltStyle({
+      transform: "perspective(600px) rotateX(0deg) rotateY(0deg)",
+      transition: "transform 0.5s ease-out",
+    });
+  };
+
   // الشهادات الخاصة بالمشارك
   const myCertificates = useMemo(
     () => certificates.filter((c) => c.participantId === participantId),
@@ -58,6 +123,40 @@ export function ParticipantDashboard() {
   return (
     <div>
       <WelcomeBanner className="mb-6" />
+
+      {nextEvent && timeLeft && (
+        <Card className="mb-6 overflow-hidden border-violet-500/20 bg-gradient-to-r from-violet-500/10 via-transparent to-transparent p-6 hover-glow-card">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="space-y-1">
+              <span className="inline-flex items-center rounded-full bg-violet-500/10 px-2.5 py-0.5 text-xs font-semibold text-violet-400 animate-pulse-glow">
+                {t("dashboard.upcomingEvent")}
+              </span>
+              <h3 className="text-xl font-bold text-foreground">{nextEvent.title}</h3>
+              <p className="text-sm text-muted-foreground">
+                {nextEvent.startDate}
+              </p>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              {[
+                { label: t("dashboard.days"), val: timeLeft.days },
+                { label: t("dashboard.hours"), val: timeLeft.hours },
+                { label: t("dashboard.minutes"), val: timeLeft.minutes },
+                { label: t("dashboard.seconds"), val: timeLeft.seconds },
+              ].map((item, idx) => (
+                <div key={idx} className="flex flex-col items-center min-w-[70px] rounded-xl border border-white/10 bg-white/[0.03] p-3 backdrop-blur-md">
+                  <span className="text-2xl font-black text-violet-400 font-mono tracking-wider">
+                    {String(item.val).padStart(2, "0")}
+                  </span>
+                  <span className="text-[10px] uppercase font-bold text-muted-foreground mt-1">
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Card>
+      )}
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label={t("nav.myEvents")} value={myEvents.length} icon={CalendarDays} />
@@ -141,12 +240,23 @@ export function ParticipantDashboard() {
           <p className="text-sm font-semibold text-foreground">
             {events.find((e) => e.id === selectedTicketEventId)?.title}
           </p>
-          <div className="rounded-2xl bg-white p-4 shadow-glow-sm">
+          <div
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={tiltStyle}
+            className="rounded-2xl bg-white p-6 shadow-glow-lg border border-white/20 select-none cursor-pointer transform-gpu w-56 mx-auto text-center"
+          >
+            <div className="text-[10px] font-black uppercase tracking-widest text-violet-600 mb-3 font-mono">
+              Evenue Badge
+            </div>
             <img
-              src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${participantId}`}
+              src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${participantId}`}
               alt="QR Badge"
-              className="h-44 w-44 object-contain"
+              className="h-40 w-40 object-contain mx-auto"
             />
+            <div className="text-[9px] text-muted-foreground mt-3 font-mono">
+              ID: {participantId?.slice(0, 8).toUpperCase()}...
+            </div>
           </div>
           <p className="text-xs text-muted-foreground">
             {t("common.scanHint") || "Present this QR code to the trainer to record your attendance."}

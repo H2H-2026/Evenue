@@ -88,7 +88,7 @@ export function AdminDashboard() {
         </>
       )}
 
-      <Card className="lg:col-span-3 lg:row-span-2">
+      <Card className="lg:col-span-3 lg:row-span-2 hover-glow-card">
         <CardHeader>
           <CardTitle>{t("dashboard.weeklyAttendance")}</CardTitle>
         </CardHeader>
@@ -120,7 +120,7 @@ export function AdminDashboard() {
         </CardContent>
       </Card>
 
-      <Card className="lg:col-span-1 lg:row-span-2">
+      <Card className="lg:col-span-1 lg:row-span-2 hover-glow-card">
         <CardHeader>
           <CardTitle>{t("dashboard.recentEvents")}</CardTitle>
         </CardHeader>

@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useTranslation } from "react-i18next";
 import { PageHeader } from "@/components/PageHeader";
 import { Card } from "@/components/ui/card";
@@ -10,39 +13,55 @@ import { useToast } from "@/stores/toast";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { Mail, Shield, User, Pencil, Save, X } from "lucide-react";
 
+const schema = z.object({
+  fullName: z.string().trim().min(1, "nameRequired"),
+});
+
+type FormValues = z.infer<typeof schema>;
+
 export function ProfilePage() {
   const { t } = useTranslation();
   const { user } = useAuth();
   const toast = useToast();
   const [editing, setEditing] = useState(false);
-  const [fullName, setFullName] = useState(user?.fullName ?? "");
-  const [saving, setSaving] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      fullName: user?.fullName ?? "",
+    },
+  });
 
   if (!user) return null;
 
-  const handleSave = async () => {
-    if (!fullName.trim()) return;
-    setSaving(true);
-
+  const handleSave = async (data: FormValues) => {
     if (isSupabaseConfigured && supabase) {
       const { error } = await supabase
         .from("profiles")
-        .update({ full_name: fullName.trim() })
+        .update({ full_name: data.fullName })
         .eq("id", user.id);
       if (error) {
         toast.error(t("profile.saveError"));
-        setSaving(false);
         return;
       }
     }
 
     useAuth.setState((s) => ({
-      user: s.user ? { ...s.user, fullName: fullName.trim() } : s.user,
+      user: s.user ? { ...s.user, fullName: data.fullName } : s.user,
     }));
 
     setEditing(false);
-    setSaving(false);
     toast.success(t("profile.saved"));
+  };
+
+  const cancelEdit = () => {
+    setEditing(false);
+    reset({ fullName: user.fullName });
   };
 
   return (
@@ -54,20 +73,26 @@ export function ProfilePage() {
           <Avatar name={user.fullName} className="h-20 w-20 text-2xl" />
           <div>
             {editing ? (
-              <div className="flex items-center gap-2">
-                <Input
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  className="w-60 text-center"
-                  autoFocus
-                />
-                <Button size="icon" onClick={handleSave} disabled={saving}>
-                  <Save className="h-4 w-4" />
-                </Button>
-                <Button size="icon" variant="ghost" onClick={() => { setEditing(false); setFullName(user.fullName); }}>
-                  <X className="h-4 w-4" />
-                </Button>
-              </div>
+              <form onSubmit={handleSubmit(handleSave)} className="flex flex-col items-center gap-2">
+                <div className="flex items-center gap-2">
+                  <Input
+                    {...register("fullName")}
+                    className="w-60 text-center"
+                    autoFocus
+                  />
+                  <Button size="icon" type="submit" disabled={isSubmitting}>
+                    <Save className="h-4 w-4" />
+                  </Button>
+                  <Button size="icon" variant="ghost" type="button" onClick={cancelEdit}>
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+                {errors.fullName && (
+                  <p className="mt-1 text-xs text-red-400">
+                    {t(`profile.errors.${errors.fullName.message}`) || errors.fullName.message}
+                  </p>
+                )}
+              </form>
             ) : (
               <div className="flex items-center gap-2">
                 <h2 className="text-xl font-bold">{user.fullName}</h2>

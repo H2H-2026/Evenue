@@ -74,7 +74,7 @@ export function TrainerDashboard() {
         <StatCard label={t("nav.feedback")} value="—" icon={Star} hint={t("common.loading")} />
       </div>
 
-      <Card className="mt-6">
+      <Card className="mt-6 hover-glow-card">
         <CardHeader>
           <CardTitle>{t("dashboard.upcomingSessions")}</CardTitle>
         </CardHeader>

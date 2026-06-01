@@ -336,14 +336,22 @@
     "upcomingSessions": "Upcoming Sessions",
     "attendanceRate": "Attendance Rate",
     "recentEvents": "Recent Events",
-    "weeklyAttendance": "Weekly Attendance"
+    "weeklyAttendance": "Weekly Attendance",
+    "upcomingEvent": "Upcoming Event",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds"
   },
   "profile": {
     "subtitle": "Your account info",
     "roleLabel": "Role",
     "idLabel": "User ID",
     "saved": "Changes saved successfully",
-    "saveError": "Failed to save changes"
+    "saveError": "Failed to save changes",
+    "errors": {
+      "nameRequired": "Name is required"
+    }
   },
   "toast": {
     "addSuccess": "Added successfully",

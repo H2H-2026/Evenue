@@ -1,4 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Plus, Search, Check, X, Trash2, ClipboardList } from "lucide-react";
@@ -16,6 +19,13 @@ import { cn } from "@/lib/utils";
 import { useToast } from "@/stores/toast";
 import { Pagination } from "@/components/ui/pagination";
 import type { RegistrationStatus } from "@/types";
+
+const schema = z.object({
+  participantId: z.string().min(1, "participantRequired"),
+  eventId: z.string().min(1, "eventRequired"),
+});
+
+type FormValues = z.infer<typeof schema>;
 
 const STATUS_STYLES: Record<RegistrationStatus, string> = {
   pending: "bg-amber-500/15 text-amber-300",
@@ -47,11 +57,21 @@ export function RegistrationsPage() {
   const [statusFilter, setStatusFilter] = useState<RegistrationStatus | "all">("all");
   const [addOpen, setAddOpen] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
-  const [newParticipant, setNewParticipant] = useState("");
-  const [newEvent, setNewEvent] = useState("");
-  const [addError, setAddError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const PER_PAGE = 10;
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      participantId: "",
+      eventId: "",
+    },
+  });
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -63,15 +83,11 @@ export function RegistrationsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [registrations, query, statusFilter, users]);
 
-  const handleAdd = () => {
-    if (!newParticipant) return setAddError(t("registrations.errors.participantRequired"));
-    if (!newEvent) return setAddError(t("registrations.errors.eventRequired"));
-    add({ participantId: newParticipant, eventId: newEvent, status: "pending" });
+  const onSubmit = (data: FormValues) => {
+    add({ participantId: data.participantId, eventId: data.eventId, status: "pending" });
     toast.success(t("toast.addSuccess"));
     setAddOpen(false);
-    setNewParticipant("");
-    setNewEvent("");
-    setAddError(null);
+    reset();
   };
 
   return (
@@ -198,14 +214,13 @@ export function RegistrationsPage() {
       )}
 
       {/* إضافة تسجيل */}
-      <Dialog open={addOpen} onClose={() => setAddOpen(false)} title={t("registrations.addTitle")}>
-        <div className="space-y-4">
+      <Dialog open={addOpen} onClose={() => { setAddOpen(false); reset(); }} title={t("registrations.addTitle")}>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <Label htmlFor="participant">{t("registrations.fields.participant")}</Label>
             <Select
               id="participant"
-              value={newParticipant}
-              onChange={(e) => setNewParticipant(e.target.value)}
+              {...register("participantId")}
             >
               <option value="">—</option>
               {participants.map((p) => (
@@ -214,10 +229,15 @@ export function RegistrationsPage() {
                 </option>
               ))}
             </Select>
+            {errors.participantId && (
+              <p className="mt-1 text-xs text-red-400">
+                {t(`registrations.errors.${errors.participantId.message}`) || errors.participantId.message}
+              </p>
+            )}
           </div>
           <div>
             <Label htmlFor="event">{t("registrations.fields.event")}</Label>
-            <Select id="event" value={newEvent} onChange={(e) => setNewEvent(e.target.value)}>
+            <Select id="event" {...register("eventId")}>
               <option value="">—</option>
               {events.map((ev) => (
                 <option key={ev.id} value={ev.id}>
@@ -225,15 +245,19 @@ export function RegistrationsPage() {
                 </option>
               ))}
             </Select>
+            {errors.eventId && (
+              <p className="mt-1 text-xs text-red-400">
+                {t(`registrations.errors.${errors.eventId.message}`) || errors.eventId.message}
+              </p>
+            )}
           </div>
-          {addError && <p className="text-xs text-red-400">{addError}</p>}
           <div className="flex justify-end gap-2 pt-2">
-            <Button variant="ghost" onClick={() => setAddOpen(false)}>
+            <Button variant="ghost" type="button" onClick={() => { setAddOpen(false); reset(); }}>
               {t("common.cancel")}
             </Button>
-            <Button onClick={handleAdd}>{t("common.save")}</Button>
+            <Button type="submit">{t("common.save")}</Button>
           </div>
-        </div>
+        </form>
       </Dialog>
 
       {/* حذف */}

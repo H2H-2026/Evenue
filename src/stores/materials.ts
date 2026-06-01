@@ -28,6 +28,7 @@ function mapMaterial(row: any): Material {
     title: row.title,
     type: row.type as MaterialType,
     url: row.url,
+    access: row.access as "public" | "restricted" || "public",
   };
 }
 
@@ -92,6 +93,7 @@ export const useMaterials = create<MaterialsState>((set) => ({
         title: input.title,
         type: input.type,
         url: input.url,
+        access: input.access || "public",
       })
       .select()
       .single();
@@ -127,6 +129,7 @@ export const useMaterials = create<MaterialsState>((set) => ({
         title: input.title,
         type: input.type,
         url: input.url,
+        access: input.access || "public",
       })
       .eq("id", id)
       .select()

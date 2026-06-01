@@ -67,7 +67,10 @@ function QrScannerDialog({ open, onClose, onScan, participants, t }: QrScannerDi
   return (
     <Dialog open={open} onClose={onClose} title={t("attendance.qrScannerTitle")} className="max-w-md">
       <div className="flex flex-col items-center justify-center gap-4 py-4 text-center">
-        <div id="qr-reader" className="w-full max-w-[300px] overflow-hidden rounded-xl border border-white/10 bg-black/20" />
+        <div className="relative w-full max-w-[300px] overflow-hidden rounded-xl border border-white/10 bg-black/20">
+          <div id="qr-reader" className="w-full" />
+          <div className="pointer-events-none absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-violet-400 to-transparent shadow-[0_0_8px_#8b5cf6] animate-laser-scan z-10" />
+        </div>
         
         {error && <p className="text-sm font-medium text-red-400">{error}</p>}
         {success && <p className="text-sm font-medium text-green-400">{success}</p>}
