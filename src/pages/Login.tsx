@@ -73,9 +73,9 @@ export function Login() {
                   <button
                     key={role}
                     onClick={() => enter(role)}
-                    className="group flex w-full items-center gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4 text-start transition-all hover:border-[#7CC4A4]/50 hover:bg-white/[0.07] hover:shadow-glow-sm"
+                    className="group flex w-full items-center gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4 text-start transition-all hover:border-[#B31B3D]/50 hover:bg-white/[0.07] hover:shadow-glow-sm"
                   >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-gradient-to-br from-[#7CC4A4] to-[#5BA882] text-white shadow-glow-sm">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-gradient-to-br from-[#B31B3D] to-[#8BB8C8] text-white shadow-glow-sm">
                       <Icon className="h-6 w-6" />
                     </div>
                     <div className="flex-1">

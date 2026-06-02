@@ -117,16 +117,16 @@ export function MaterialForm({
               type="file"
               onChange={handleFileChange}
               disabled={uploading}
-              className="cursor-pointer file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[#7CC4A4]/10 file:text-[#7CC4A4] hover:file:bg-[#7CC4A4]/20"
+              className="cursor-pointer file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20"
             />
             {uploading && (
-              <p className="text-sm text-[#7CC4A4] flex items-center gap-2">
-                <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#7CC4A4] border-t-transparent" />
+              <p className="text-sm text-primary flex items-center gap-2">
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
                 {t("materials.uploading")}
               </p>
             )}
             {currentUrl && !uploading && (
-              <p className="text-xs text-green-400 truncate">
+              <p className="text-xs text-success truncate">
                 {t("materials.uploaded")}: {currentUrl}
               </p>
             )}

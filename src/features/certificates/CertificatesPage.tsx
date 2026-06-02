@@ -122,14 +122,14 @@ export function CertificatesPage({ readOnly = false, participantId }: { readOnly
               display: flex;
               flex-direction: column;
               justify-content: space-between;
-              border: 16px double #7CC4A4;
+              border: 16px double #B31B3D;
               box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             }
             .certificate-container::before {
               content: "";
               position: absolute;
               top: 0; left: 0; right: 0; bottom: 0;
-              border: 2px solid #5BA882;
+              border: 2px solid #8BB8C8;
               margin: 4px;
               pointer-events: none;
             }
@@ -138,7 +138,7 @@ export function CertificatesPage({ readOnly = false, participantId }: { readOnly
               margin-top: 1.5rem;
             }
             .brand-logo {
-              color: #5BA882;
+              color: #B31B3D;
               font-size: 2.25rem;
               font-weight: 900;
               letter-spacing: -0.05em;
@@ -159,7 +159,7 @@ export function CertificatesPage({ readOnly = false, participantId }: { readOnly
             .recipient-name {
               font-size: 2.75rem;
               font-weight: 900;
-              color: #7CC4A4;
+              color: #B31B3D;
               margin: 1rem 0;
               border-bottom: 2px dashed #cbd5e1;
               display: inline-block;
@@ -222,7 +222,7 @@ export function CertificatesPage({ readOnly = false, participantId }: { readOnly
         <body>
           <div class="certificate-container">
             <div class="header">
-              <div class="brand-logo">Evenue</div>
+              <div class="brand-logo">Heart to Heart</div>
               <div class="cert-title">شهادة اجتياز برنامج تدريبي</div>
               <div class="subtitle">تُمنح هذه الشهادة رسمياً إلى المتميز/ة:</div>
             </div>
@@ -237,9 +237,9 @@ export function CertificatesPage({ readOnly = false, participantId }: { readOnly
 
             <div class="footer-section">
               <div class="signature-block">
-                <div style="font-family: 'Georgia', serif; font-style: italic; color: #4f46e5; margin-bottom: 0.25rem; font-size: 1.1rem;">Evenue Admin</div>
+                <div style="font-family: 'Georgia', serif; font-style: italic; color: #B31B3D; margin-bottom: 0.25rem; font-size: 1.1rem;">H2H Admin</div>
                 <div class="signature-title">إدارة التدريب والبرامج</div>
-                <div class="signature-dept">منصة Evenue العالمية</div>
+                <div class="signature-dept">مؤسسة Heart to Heart</div>
               </div>
 
               <div style="text-align: center;">
@@ -294,7 +294,7 @@ export function CertificatesPage({ readOnly = false, participantId }: { readOnly
               <Card className="group h-full">
                 <div className="flex h-full flex-col p-5">
                   <div className="mb-3 flex items-start justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-glow-sm">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent text-white shadow-glow-sm">
                       <FileBadge className="h-5 w-5" />
                     </div>
                     {!readOnly && (

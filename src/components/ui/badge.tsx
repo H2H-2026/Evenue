@@ -3,7 +3,7 @@ import type { EventStatus } from "@/types";
 
 const STATUS_STYLES: Record<EventStatus, string> = {
   draft: "bg-white/10 text-muted-foreground",
-  published: "bg-[#7CC4A4]/15 text-[#7CC4A4]",
+  published: "bg-success/15 text-success",
   ongoing: "bg-emerald-500/15 text-emerald-300",
   completed: "bg-sky-500/15 text-sky-300",
   cancelled: "bg-red-500/15 text-red-300",

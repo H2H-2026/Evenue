@@ -13,7 +13,7 @@ import { useCertificates } from "@/stores/certificates";
 import { useAttendance } from "@/stores/attendance";
 import { Calendar, Users, ClipboardList, Award, Download, Printer } from "lucide-react";
 
-const COLORS = ["#7CC4A4", "#5BA882", "#4A9068", "#8BB8C8", "#F5D547"];
+const COLORS = ["#B31B3D", "#8BB8C8", "#7CC4A4", "#F5D547", "#1E1B4B"];
 
 export function ReportsPage() {
   const { t, i18n } = useTranslation();
@@ -109,7 +109,7 @@ export function ReportsPage() {
             <Button
               size="sm"
               onClick={handlePrint}
-              className="gap-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow-glow-sm"
+              className="gap-1 bg-primary hover:bg-primary/90 text-white font-bold shadow-glow-sm"
             >
               <Printer className="h-4 w-4" />
               <span>{t("reports.printReport") || "طباعة التقرير"}</span>
@@ -158,7 +158,7 @@ export function ReportsPage() {
                 <XAxis dataKey="name" stroke="#94a3b8" fontSize={12} angle={-20} textAnchor="end" height={60} />
                 <YAxis stroke="#94a3b8" />
                 <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #334155" }} />
-                <Bar dataKey="value" fill="#7CC4A4" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="value" fill="#B31B3D" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -173,7 +173,7 @@ export function ReportsPage() {
                 <XAxis dataKey="day" stroke="#94a3b8" />
                 <YAxis stroke="#94a3b8" />
                 <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #334155" }} />
-                <Bar dataKey="value" fill="#5BA882" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="value" fill="#8BB8C8" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

@@ -25,10 +25,10 @@ export function WelcomeBanner({ className }: { className?: string }) {
         className,
       )}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#5BA882]/30 via-[#7CC4A4]/20 to-[#8BB8C8]/20" />
-      <div className="absolute -end-10 -top-10 h-48 w-48 rounded-full bg-[#7CC4A4]/30 blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#B31B3D]/20 via-[#8BB8C8]/20 to-[#B31B3D]/5" />
+      <div className="absolute -end-10 -top-10 h-48 w-48 rounded-full bg-[#B31B3D]/20 blur-3xl" />
       <div className="relative z-10 flex flex-col gap-1">
-        <div className="mb-1 flex items-center gap-2 text-xs font-medium text-[#7CC4A4]">
+        <div className="mb-1 flex items-center gap-2 text-xs font-medium text-[#B31B3D]">
           <Sparkles className="h-4 w-4" />
           <span>{today}</span>
         </div>

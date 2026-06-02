@@ -14,8 +14,8 @@ export default {
         display: ["Inter", "IBM Plex Sans Arabic", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        glow: "0 0 0 1px hsl(var(--border)), 0 8px 30px -8px hsl(153 40% 63% / 0.45)",
-        "glow-sm": "0 4px 20px -6px hsl(153 40% 63% / 0.35)",
+        glow: "0 0 0 1px hsl(var(--border)), 0 8px 30px -8px hsl(347 74% 40% / 0.45)",
+        "glow-sm": "0 4px 20px -6px hsl(347 74% 40% / 0.35)",
       },
       keyframes: {
         aurora: {
@@ -36,6 +36,9 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--h2h-mint))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",

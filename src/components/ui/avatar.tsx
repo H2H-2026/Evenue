@@ -15,7 +15,7 @@ export function Avatar({
   return (
     <div
       className={cn(
-        "flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#7CC4A4] to-[#5BA882] font-bold text-white shadow-glow-sm",
+        "flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent font-bold text-white shadow-glow-sm",
         className,
       )}
     >

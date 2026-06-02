@@ -1,39 +1,46 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Evenue Logo: دمج بين Event + Avenue (المقر).
- * الرمز = دبوس موقع باللون النبتي (Mint Green #7CC4A4)
+ * Heart to Heart / Evenue Logo component
+ * Renders H2H branding logos with custom SVG heart badge as fallback
  */
-export function LogoMark({ className }: { className?: string }) {
+export function LogoMark({ className, inverted = false }: { className?: string; inverted?: boolean }) {
   return (
-    <svg
-      viewBox="0 0 40 40"
-      className={className}
-      role="img"
-      aria-label="Evenue"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <linearGradient id="evenueGradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#7CC4A4" />
-          <stop offset="55%" stopColor="#5BA882" />
-          <stop offset="100%" stopColor="#4A9068" />
-        </linearGradient>
-      </defs>
-      {/* الدبوس */}
-      <path
-        d="M20 3C12.8 3 7 8.6 7 15.6C7 24.5 18.2 35.5 19.2 36.4a1.1 1.1 0 0 0 1.6 0C21.8 35.5 33 24.5 33 15.6C33 8.6 27.2 3 20 3Z"
-        fill="url(#evenueGradient)"
+    <div className={cn("relative flex items-center justify-center", className)}>
+      {/* Primary PNG Logo */}
+      <img
+        src={inverted ? "/Final-Logo-White.png" : "/h2h-logo1.png"}
+        alt="Heart to Heart Logo"
+        className="h-full w-full object-contain"
+        onError={(e) => {
+          // If PNG fails, hide image and let fallback show
+          e.currentTarget.style.display = "none";
+          const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+          if (fallback) fallback.style.display = "block";
+        }}
       />
-      {/* الجادة (avenue) المتقاربة نحو الأعلى */}
-      <path d="M15.6 25.2 L24.4 25.2 L21.6 14.4 L18.4 14.4 Z" fill="#FFFFFF" opacity="0.95" />
-      {/* علامات المسار */}
-      <rect x="19.3" y="16.6" width="1.4" height="2.2" rx="0.7" fill="url(#evenueGradient)" />
-      <rect x="19.3" y="20.2" width="1.4" height="2.6" rx="0.7" fill="url(#evenueGradient)" />
-      {/* نقطة الفعالية / الوجهة */}
-      <circle cx="20" cy="11.4" r="2.6" fill="#FFFFFF" />
-      <circle cx="20" cy="11.4" r="1.2" fill="url(#evenueGradient)" />
-    </svg>
+      
+      {/* SVG Fallback (Heart Circle Gradient) */}
+      <svg
+        viewBox="0 0 40 40"
+        className="absolute inset-0 h-full w-full hidden"
+        role="img"
+        aria-label="Heart to Heart Fallback"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="h2hGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#B31B3D" />
+            <stop offset="100%" stopColor="#8BB8C8" />
+          </linearGradient>
+        </defs>
+        <circle cx="20" cy="20" r="18" fill={inverted ? "none" : "url(#h2hGrad)"} stroke={inverted ? "#FFFFFF" : "none"} strokeWidth={inverted ? 2.5 : 0} />
+        <path
+          d="M12 16 C12 11, 19 11, 20 15 C21 11, 28 11, 28 16 C28 23, 20 28, 20 28 C20 28, 12 23, 12 16 Z"
+          fill={inverted ? "#FFFFFF" : "#FFFFFF"}
+        />
+      </svg>
+    </div>
   );
 }
 
@@ -52,23 +59,23 @@ export function Logo({
 }) {
   return (
     <div className={cn("flex items-center gap-2.5", className)}>
-      <LogoMark className={cn("h-9 w-9", markClassName)} />
+      <LogoMark className={cn("h-9 w-9", markClassName)} inverted={inverted} />
       <div className="flex flex-col leading-none">
         <span
           className={cn(
-            "text-xl font-extrabold tracking-tight",
+            "text-xl md:text-2xl font-extrabold tracking-tight",
             inverted ? "text-white" : "text-foreground",
           )}
         >
           Even<span className="text-primary">ue</span>
         </span>
         {showTagline && (
-          <span className={cn("mt-0.5 text-[11px]", inverted ? "text-white/70" : "text-muted-foreground")}>
+          <span className={cn("mt-1 text-xs", inverted ? "text-white/70" : "text-muted-foreground")}>
             منصة الفعاليات والمقرّات
           </span>
         )}
         {showHeartToHeart && (
-          <span className={cn("mt-0.5 text-[10px] font-medium", inverted ? "text-white/60" : "text-muted-foreground")}>
+          <span className={cn("mt-1 text-[11px] font-medium", inverted ? "text-white/60" : "text-muted-foreground")}>
             by Heart to Heart Consulting
           </span>
         )}

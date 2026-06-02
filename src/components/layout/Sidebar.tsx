@@ -118,8 +118,12 @@ export function SidebarContent({
 
   return (
     <div className="flex h-full flex-col">
-      <div className={cn("flex h-16 items-center border-b border-black/5 dark:border-white/10", collapsed ? "justify-center px-2" : "px-5")}>
-        {collapsed ? <LogoMark className="h-9 w-9" /> : <Logo showHeartToHeart={true} />}
+      <div className={cn("flex h-20 items-center border-b border-black/5 dark:border-white/10", collapsed ? "justify-center px-2" : "px-5")}>
+        {collapsed ? (
+          <LogoMark className="h-12 w-12" inverted={true} />
+        ) : (
+          <Logo showHeartToHeart={true} inverted={true} markClassName="h-12 w-12" />
+        )}
       </div>
 
       <nav className="no-scrollbar flex-1 space-y-5 overflow-y-auto p-3">
@@ -142,7 +146,7 @@ export function SidebarContent({
                     "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all",
                     collapsed && "justify-center px-0",
                     isActive
-                      ? "bg-gradient-to-r from-[#7CC4A4]/90 to-[#5BA882]/90 text-white shadow-glow-sm"
+                      ? "bg-gradient-to-r from-primary/90 to-accent/90 text-white shadow-glow-sm"
                       : "text-muted-foreground hover:bg-black/5 dark:hover:bg-white/5 hover:text-foreground",
                   )
                 }
@@ -158,15 +162,15 @@ export function SidebarContent({
       {user && (
         <div className="border-t border-black/5 dark:border-white/10 p-4">
           {!collapsed ? (
-            <div className="rounded-2xl border border-[#7CC4A4]/10 dark:border-white/10 bg-gradient-to-br from-[#7CC4A4]/10 via-[#5BA882]/10 to-[#4A9068]/5 dark:from-white/[0.02] dark:to-white/[0.04] p-3.5 shadow-[0_8px_24px_rgba(124,196,164,0.08)] dark:shadow-none hover:border-[#7CC4A4]/20 dark:hover:bg-white/[0.06] transition-all">
+            <div className="rounded-2xl border border-primary/10 dark:border-white/10 bg-gradient-to-br from-primary/10 via-accent/10 to-transparent dark:from-white/[0.02] dark:to-white/[0.04] p-3.5 shadow-[0_8px_24px_rgba(179,27,61,0.08)] dark:shadow-none hover:border-primary/20 dark:hover:bg-white/[0.06] transition-all">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#7CC4A4] to-[#5BA882] text-base font-bold text-white shadow-glow-sm">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent text-base font-bold text-white shadow-glow-sm">
                   {user.fullName.charAt(0)}
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-bold text-foreground">{user.fullName}</p>
                   <p className="truncate text-[10px] text-muted-foreground/80">{user.email}</p>
-                  <span className="inline-flex items-center rounded-full bg-[#7CC4A4]/10 dark:bg-[#5BA882]/20 px-2 py-0.5 text-[9px] font-semibold text-[#4A9068] dark:text-[#7CC4A4] border border-[#7CC4A4]/15 dark:border-[#5BA882]/30 mt-1.5">
+                  <span className="inline-flex items-center rounded-full bg-primary/10 dark:bg-primary/20 px-2 py-0.5 text-[9px] font-semibold text-primary border border-primary/15 mt-1.5">
                     {t(`roles.${user.role}`)}
                   </span>
                 </div>
@@ -175,7 +179,7 @@ export function SidebarContent({
                 <NavLink
                   to={`/${user.role}/profile`}
                   onClick={onNavigate}
-                  className="flex flex-1 items-center justify-center gap-1 rounded-lg bg-[#7CC4A4]/10 hover:bg-[#7CC4A4]/20 border border-[#7CC4A4]/20 text-[#4A9068] dark:bg-white/5 dark:text-foreground dark:hover:bg-white/10 dark:border-transparent px-2 py-1.5 text-xs font-bold transition-all"
+                  className="flex flex-1 items-center justify-center gap-1 rounded-lg bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary dark:bg-white/5 dark:text-foreground dark:hover:bg-white/10 dark:border-transparent px-2 py-1.5 text-xs font-bold transition-all"
                 >
                   <UserCircle className="h-3.5 w-3.5" />
                   {t("topbar.profile")}
@@ -191,8 +195,8 @@ export function SidebarContent({
               </div>
             </div>
           ) : (
-            <div className="flex flex-col items-center gap-3 rounded-2xl border border-[#7CC4A4]/10 dark:border-white/10 bg-gradient-to-b from-[#7CC4A4]/10 to-[#5BA882]/10 dark:from-white/[0.02] dark:to-white/[0.04] p-2 hover:bg-[#7CC4A4]/10 dark:hover:bg-white/[0.06] shadow-[0_4px_12px_rgba(124,196,164,0.06)] dark:shadow-none transition-all">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#7CC4A4] to-[#5BA882] text-xs font-bold text-white shadow-glow-sm">
+            <div className="flex flex-col items-center gap-3 rounded-2xl border border-primary/10 dark:border-white/10 bg-gradient-to-b from-primary/10 to-accent/10 dark:from-white/[0.02] dark:to-white/[0.04] p-2 hover:bg-primary/10 dark:hover:bg-white/[0.06] shadow-[0_4px_12px_rgba(179,27,61,0.06)] dark:shadow-none transition-all">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent text-xs font-bold text-white shadow-glow-sm">
                 {user.fullName.charAt(0)}
               </div>
               <button

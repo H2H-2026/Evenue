@@ -125,10 +125,10 @@ export function ParticipantDashboard() {
       <WelcomeBanner className="mb-6" />
 
       {nextEvent && timeLeft && (
-        <Card className="mb-6 overflow-hidden border-[#7CC4A4]/20 bg-gradient-to-r from-[#7CC4A4]/10 via-transparent to-transparent p-6 hover-glow-card">
+        <Card className="mb-6 overflow-hidden border-primary/20 bg-gradient-to-r from-primary/10 via-transparent to-transparent p-6 hover-glow-card">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div className="space-y-1">
-              <span className="inline-flex items-center rounded-full bg-[#7CC4A4]/10 px-2.5 py-0.5 text-xs font-semibold text-[#7CC4A4] animate-pulse-glow">
+              <span className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary animate-pulse-glow">
                 {t("dashboard.upcomingEvent")}
               </span>
               <h3 className="text-xl font-bold text-foreground">{nextEvent.title}</h3>
@@ -145,7 +145,7 @@ export function ParticipantDashboard() {
                 { label: t("dashboard.seconds"), val: timeLeft.seconds },
               ].map((item, idx) => (
                 <div key={idx} className="flex flex-col items-center min-w-[70px] rounded-xl border border-white/10 bg-white/[0.03] p-3 backdrop-blur-md">
-                  <span className="text-2xl font-black text-[#7CC4A4] font-mono tracking-wider">
+                  <span className="text-2xl font-black text-primary font-mono tracking-wider">
                     {String(item.val).padStart(2, "0")}
                   </span>
                   <span className="text-[10px] uppercase font-bold text-muted-foreground mt-1">
@@ -190,7 +190,7 @@ export function ParticipantDashboard() {
                         size="icon"
                         onClick={() => setSelectedTicketEventId(e.id)}
                         title={t("common.qrCode") || "QR Code"}
-                        className="h-8 w-8 text-[#7CC4A4] hover:bg-[#7CC4A4]/10 hover:text-[#5BA882]"
+                        className="h-8 w-8 text-primary hover:bg-primary/10 hover:text-accent"
                       >
                         <QrCode className="h-4 w-4" />
                       </Button>
@@ -246,7 +246,7 @@ export function ParticipantDashboard() {
             style={tiltStyle}
             className="rounded-2xl bg-white p-6 shadow-glow-lg border border-white/20 select-none cursor-pointer transform-gpu w-56 mx-auto text-center"
           >
-            <div className="text-[10px] font-black uppercase tracking-widest text-[#5BA882] mb-3 font-mono">
+            <div className="text-[10px] font-black uppercase tracking-widest text-accent mb-3 font-mono">
               Evenue Badge
             </div>
             <img
