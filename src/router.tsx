@@ -18,7 +18,7 @@ function el(
 }
 
 export const router = createBrowserRouter([
-  { path: "/", element: <Navigate to="/login" replace /> },
+  { path: "/", element: el(() => import("@/pages/LandingPage"), "LandingPage") },
   { path: "/login", element: el(() => import("@/pages/Login"), "Login") },
   { path: "/verify-certificate", element: el(() => import("@/features/certificates/VerifyCertificatePage"), "VerifyCertificatePage") },
   {
