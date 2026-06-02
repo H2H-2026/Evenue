@@ -11,7 +11,9 @@ export default {
     extend: {
       fontFamily: {
         sans: ["IBM Plex Sans Arabic", "Inter", "Tajawal", "system-ui", "sans-serif"],
-        display: ["Inter", "IBM Plex Sans Arabic", "system-ui", "sans-serif"],
+        display: ["Bricolage Grotesque", "Inter", "IBM Plex Sans Arabic", "system-ui", "sans-serif"],
+        serif: ["Libre Baskerville", "Georgia", "serif"],
+        hand: ["Caveat", "cursive"],
       },
       boxShadow: {
         glow: "0 0 0 1px hsl(var(--border)), 0 8px 30px -8px hsl(347 74% 40% / 0.45)",
