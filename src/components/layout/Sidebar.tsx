@@ -119,7 +119,7 @@ export function SidebarContent({
   return (
     <div className="flex h-full flex-col">
       <div className={cn("flex h-16 items-center border-b border-black/5 dark:border-white/10", collapsed ? "justify-center px-2" : "px-5")}>
-        {collapsed ? <LogoMark className="h-9 w-9" /> : <Logo />}
+        {collapsed ? <LogoMark className="h-9 w-9" /> : <Logo showHeartToHeart={true} />}
       </div>
 
       <nav className="no-scrollbar flex-1 space-y-5 overflow-y-auto p-3">

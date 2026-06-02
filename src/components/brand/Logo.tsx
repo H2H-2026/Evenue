@@ -41,11 +41,13 @@ export function Logo({
   className,
   markClassName,
   showTagline = false,
+  showHeartToHeart = false,
   inverted = false,
 }: {
   className?: string;
   markClassName?: string;
   showTagline?: boolean;
+  showHeartToHeart?: boolean;
   inverted?: boolean;
 }) {
   return (
@@ -63,6 +65,11 @@ export function Logo({
         {showTagline && (
           <span className={cn("mt-0.5 text-[11px]", inverted ? "text-white/70" : "text-muted-foreground")}>
             منصة الفعاليات والمقرّات
+          </span>
+        )}
+        {showHeartToHeart && (
+          <span className={cn("mt-0.5 text-[10px]", inverted ? "text-[#B31B3D]/80" : "text-[#B31B3D]/70")}>
+            by Heart to Heart Consulting
           </span>
         )}
       </div>
