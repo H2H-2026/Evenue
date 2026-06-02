@@ -68,7 +68,7 @@ export function Logo({
           </span>
         )}
         {showHeartToHeart && (
-          <span className={cn("mt-0.5 text-[10px]", inverted ? "text-[#B31B3D]/80" : "text-[#B31B3D]/70")}>
+          <span className={cn("mt-0.5 text-[10px] font-medium", inverted ? "text-white/60" : "text-muted-foreground")}>
             by Heart to Heart Consulting
           </span>
         )}

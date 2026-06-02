@@ -51,7 +51,7 @@ export function Login() {
         <Card className="glass-strong w-full">
           <CardContent className="p-8">
             <div className="mb-8 flex flex-col items-center text-center">
-              <Logo markClassName="h-14 w-14" className="mb-3 flex-col gap-2" showHeartToHeart />
+              <Logo markClassName="h-14 w-14" className="mb-3 flex-col gap-2" showHeartToHeart inverted />
               <p className="mt-2 text-sm text-muted-foreground">{t("login.subtitle")}</p>
             </div>
 
