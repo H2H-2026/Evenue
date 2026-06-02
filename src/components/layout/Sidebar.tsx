@@ -17,6 +17,7 @@ import {
   ChevronsLeft,
   UserCircle,
   LogOut,
+  Building2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo, LogoMark } from "@/components/brand/Logo";
@@ -46,6 +47,12 @@ const NAV_BY_ROLE: Record<UserRole, NavGroup[]> = {
       entries: [
         { to: "/admin/users", labelKey: "nav.users", icon: Users },
         { to: "/admin/registrations", labelKey: "nav.registrations", icon: ClipboardList },
+      ],
+    },
+    {
+      groupKey: "assessment",
+      entries: [
+        { to: "/admin/assessment-centers", labelKey: "nav.assessmentCenters", icon: Building2 },
       ],
     },
     {

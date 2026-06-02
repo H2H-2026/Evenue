@@ -38,6 +38,7 @@
     "feedback": "Feedback",
     "reports": "Reports",
     "certificates": "Certificates",
+    "assessmentCenters": "Assessment Centers",
     "schedule": "My Schedule",
     "myEvents": "My Events"
   },
@@ -45,6 +46,7 @@
     "overview": "Overview",
     "management": "Management",
     "people": "People",
+    "assessment": "Assessment",
     "analytics": "Analytics",
     "training": "Training",
     "tracking": "Tracking",

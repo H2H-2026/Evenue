@@ -98,3 +98,87 @@ export interface Certificate {
   code: string;
   issuedAt: string;
 }
+
+// Assessment Centers (HR Evaluation Centers)
+export type AssessmentCenterStatus = "draft" | "active" | "completed" | "cancelled";
+
+export interface AssessmentCenter {
+  id: string;
+  name: string;
+  description?: string;
+  startDate: string;
+  endDate: string;
+  status: AssessmentCenterStatus;
+  maxAssessors: number;
+  maxCandidates: number;
+  location?: string;
+  createdAt: string;
+  createdBy?: string;
+}
+
+export interface Assessor {
+  id: string;
+  profileId: string;
+  centerId: string;
+  competencies: string[];
+  maxDailyAssessments: number;
+  availabilityStart?: string;
+  availabilityEnd?: string;
+}
+
+export interface Candidate {
+  id: string;
+  centerId: string;
+  fullName: string;
+  email: string;
+  phone?: string;
+  jobTitle?: string;
+  department?: string;
+  status: "scheduled" | "in_progress" | "completed" | "cancelled";
+  notes?: string;
+  createdAt: string;
+}
+
+export interface AssessmentRoom {
+  id: string;
+  centerId: string;
+  venueId: string;
+  name: string;
+  capacity: number;
+  equipment?: string[];
+  schedule?: RoomSchedule[];
+}
+
+export interface RoomSchedule {
+  id: string;
+  roomId: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  isBooked: boolean;
+  bookedBy?: string;
+}
+
+export type AssessmentType = "interview" | "group" | "presentation" | "case_study" | "practical";
+
+export interface AssessmentSession {
+  id: string;
+  centerId: string;
+  candidateId: string;
+  assessorId: string;
+  roomId: string;
+  type: AssessmentType;
+  scheduledAt: string;
+  duration: number;
+  status: "scheduled" | "in_progress" | "completed" | "cancelled";
+  notes?: string;
+}
+
+export interface AssessmentScore {
+  id: string;
+  sessionId: string;
+  competency: string;
+  score: number;
+  maxScore: number;
+  comments?: string;
+}

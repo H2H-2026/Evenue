@@ -37,6 +37,7 @@
     "feedback": "التقييمات",
     "reports": "التقارير",
     "certificates": "الشهادات",
+    "assessmentCenters": "مراكز التقييم",
     "schedule": "جدولي",
     "myEvents": "فعالياتي"
   },
@@ -44,6 +45,7 @@
     "overview": "نظرة عامة",
     "management": "الإدارة",
     "people": "الأشخاص",
+    "assessment": "التقييم",
     "analytics": "التحليلات",
     "training": "التدريب",
     "tracking": "المتابعة",

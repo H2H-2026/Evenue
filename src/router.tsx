@@ -36,6 +36,7 @@ export const router = createBrowserRouter([
       { path: "users", element: el(() => import("@/features/users/UsersPage"), "UsersPage") },
       { path: "registrations", element: el(() => import("@/features/registrations/RegistrationsPage"), "RegistrationsPage") },
       { path: "reports", element: el(() => import("@/features/reports/ReportsPage"), "ReportsPage") },
+      { path: "assessment-centers", element: el(() => import("@/features/assessment-centers/AssessmentCentersPage"), "AssessmentCentersPage") },
       { path: "profile", element: el(() => import("@/features/profile/ProfilePage"), "ProfilePage") },
     ],
   },
