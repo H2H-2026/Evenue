@@ -14,8 +14,8 @@ export default {
         display: ["Inter", "IBM Plex Sans Arabic", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        glow: "0 0 0 1px hsl(var(--border)), 0 8px 30px -8px hsl(258 90% 60% / 0.45)",
-        "glow-sm": "0 4px 20px -6px hsl(258 90% 60% / 0.35)",
+        glow: "0 0 0 1px hsl(var(--border)), 0 8px 30px -8px hsl(345 73% 40% / 0.45)",
+        "glow-sm": "0 4px 20px -6px hsl(345 73% 40% / 0.35)",
       },
       keyframes: {
         aurora: {
