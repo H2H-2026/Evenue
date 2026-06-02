@@ -24,7 +24,7 @@ export function StatCard({
     >
       <Card className="group overflow-hidden hover-glow-card">
         <CardContent className="flex items-center gap-4 p-5">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white shadow-glow-sm transition-transform group-hover:scale-105">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#7CC4A4] to-[#5BA882] text-white shadow-glow-sm transition-transform group-hover:scale-105">
             <Icon className="h-6 w-6" />
           </div>
           <div>

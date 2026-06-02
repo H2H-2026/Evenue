@@ -13,7 +13,7 @@ import {
   Globe,
   ChevronDown
 } from "lucide-react";
-import { EvenueLogo } from "@/components/brand/Logo";
+import { Logo } from "@/components/brand/Logo";
 
 const features = [
   {
@@ -85,12 +85,12 @@ export function LandingPage() {
         {/* Floating Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
-            className="absolute top-20 left-10 w-72 h-72 bg-[#B31B3D]/20 rounded-full blur-3xl"
+            className="absolute top-20 left-10 w-72 h-72 bg-[#7CC4A4]/20 rounded-full blur-3xl"
             animate={{ y: [0, 30, 0], x: [0, 20, 0] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute bottom-20 right-10 w-96 h-96 bg-[#8BB8C8]/20 rounded-full blur-3xl"
+            className="absolute bottom-20 right-10 w-96 h-96 bg-[#5BA882]/20 rounded-full blur-3xl"
             animate={{ y: [0, -40, 0], x: [0, -30, 0] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -105,8 +105,11 @@ export function LandingPage() {
           >
             <div className="flex justify-center mb-6">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#B31B3D] to-[#8BB8C8] blur-2xl opacity-30" />
-                <EvenueLogo className="relative h-24 w-24" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#7CC4A4] to-[#5BA882] blur-2xl opacity-30" />
+                <div className="flex flex-col items-center gap-2">
+                <Logo className="relative h-24 w-24" />
+                <span className="text-sm text-muted-foreground">by Heart to Heart</span>
+              </div>
               </div>
             </div>
           </motion.div>
@@ -150,7 +153,7 @@ export function LandingPage() {
           >
             <Button
               size="lg"
-              className="gap-2 bg-gradient-to-r from-[#B31B3D] to-[#8BB8C8] hover:opacity-90 text-lg px-8 py-6"
+              className="gap-2 bg-gradient-to-r from-[#7CC4A4] to-[#5BA882] hover:opacity-90 text-lg px-8 py-6"
               onClick={() => window.location.href = "/login"}
             >
               {isAr ? "دخول المنصة" : "Enter Platform"}
@@ -245,13 +248,13 @@ export function LandingPage() {
             {features.map((feature, i) => (
               <motion.div
                 key={feature.titleAr}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-6 transition-all hover:border-[#B31B3D]/30 hover:shadow-lg hover:shadow-[#B31B3D]/10"
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-6 transition-all hover:border-[#7CC4A4]/30 hover:shadow-lg hover:shadow-[#7CC4A4]/10"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="mb-4 inline-flex rounded-xl bg-gradient-to-br from-[#B31B3D]/20 to-[#8BB8C8]/20 p-3">
+                <div className="mb-4 inline-flex rounded-xl bg-gradient-to-br from-[#7CC4A4]/20 to-[#5BA882]/20 p-3">
                   <feature.icon className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">
@@ -268,10 +271,10 @@ export function LandingPage() {
 
       {/* Assessment Centers Highlight */}
       <section className="py-24 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#B31B3D]/5 via-[#8BB8C8]/5 to-[#B31B3D]/5" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#7CC4A4]/5 via-[#5BA882]/5 to-[#7CC4A4]/5" />
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="rounded-3xl border border-white/10 bg-card/50 backdrop-blur-sm p-8 md:p-12 text-center">
-            <div className="inline-flex rounded-2xl bg-gradient-to-br from-[#B31B3D]/20 to-[#8BB8C8]/20 p-4 mb-6">
+            <div className="inline-flex rounded-2xl bg-gradient-to-br from-[#7CC4A4]/20 to-[#5BA882]/20 p-4 mb-6">
               <Building2 className="h-8 w-8 text-primary" />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
@@ -307,7 +310,7 @@ export function LandingPage() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-3">
-              <EvenueLogo className="h-8 w-8" />
+              <Logo className="h-8 w-8" />
               <span className="font-semibold">Evenue</span>
             </div>
             

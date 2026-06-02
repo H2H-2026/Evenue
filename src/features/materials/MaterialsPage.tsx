@@ -143,8 +143,8 @@ function InteractiveReaderDialog({
           <title>${material.title} - ملخص ملاحظات المذاكرة</title>
           <style>
             body { font-family: system-ui, -apple-system, sans-serif; direction: rtl; padding: 2.5rem; color: #1e293b; line-height: 1.6; }
-            .header { border-bottom: 2px solid #6366f1; padding-bottom: 1.25rem; margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-end; }
-            .header h1 { margin: 0; color: #4f46e5; font-size: 1.8rem; font-weight: 800; }
+            .header { border-bottom: 2px solid #7CC4A4; padding-bottom: 1.25rem; margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-end; }
+            .header h1 { margin: 0; color: #5BA882; font-size: 1.8rem; font-weight: 800; }
             .header p { margin: 0.5rem 0 0; font-size: 0.9rem; color: #64748b; }
             .watermark-print { font-size: 0.75rem; color: #cbd5e1; border: 1px dashed #cbd5e1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; }
             .slide-block { page-break-inside: avoid; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 2rem; overflow: hidden; display: flex; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
@@ -152,7 +152,7 @@ function InteractiveReaderDialog({
             .slide-title { font-weight: 800; font-size: 1.15rem; color: #1e1b4b; margin-bottom: 0.75rem; }
             .slide-body { font-size: 0.95rem; color: #334155; }
             .slide-notes { flex: 2; padding: 1.5rem; background: #fff; display: flex; flex-col; justify-content: flex-start; }
-            .notes-title { font-size: 0.75rem; font-weight: 900; text-transform: uppercase; color: #6366f1; margin-bottom: 0.75rem; letter-spacing: 0.05em; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.25rem; }
+            .notes-title { font-size: 0.75rem; font-weight: 900; text-transform: uppercase; color: #7CC4A4; margin-bottom: 0.75rem; letter-spacing: 0.05em; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.25rem; }
             .notes-body { font-size: 0.9rem; color: #0f172a; font-style: italic; white-space: pre-wrap; }
             @media print {
               body { padding: 0; background: none; }
@@ -200,7 +200,7 @@ function InteractiveReaderDialog({
           )}
 
           <div className="flex-1 flex flex-col justify-center items-center text-center px-8 relative z-0">
-            <span className="text-[10px] font-black uppercase tracking-widest text-violet-500 mb-3 font-mono">
+            <span className="text-[10px] font-black uppercase tracking-widest text-[#7CC4A4] mb-3 font-mono">
               {t("materials.slideIndex") || "الشريحة"} {slideIndex + 1} / {slides.length}
             </span>
             <h2 className="text-2xl font-black text-foreground mb-4 select-none leading-relaxed">
@@ -247,7 +247,7 @@ function InteractiveReaderDialog({
                 disabled={isPrintDisabled}
                 className={cn(
                   "gap-1.5 font-bold transition-all",
-                  !isPrintDisabled && "bg-indigo-600 hover:bg-indigo-700 text-white shadow-glow-sm"
+                  !isPrintDisabled && "bg-[#7CC4A4] hover:bg-[#5BA882] text-white shadow-glow-sm"
                 )}
                 title={isPrintDisabled ? "ميزة الطباعة مقفلة حتى تدوين الملاحظات" : "طباعة المادة العلمية وملخص الملاحظات"}
               >
@@ -269,7 +269,7 @@ function InteractiveReaderDialog({
 
         <div className="flex-[1.2] flex flex-col justify-between p-6 bg-background">
           <div className="flex-1 flex flex-col">
-            <div className="flex items-center gap-2 text-indigo-500 mb-4 border-b border-black/5 dark:border-white/5 pb-3">
+            <div className="flex items-center gap-2 text-[#7CC4A4] mb-4 border-b border-black/5 dark:border-white/5 pb-3">
               <Notebook className="h-5 w-5" />
               <h3 className="font-bold text-sm text-foreground">
                 {t("materials.myNotes") || "ملاحظاتي الشخصية"}
@@ -283,7 +283,7 @@ function InteractiveReaderDialog({
             <textarea
               value={noteText}
               onChange={(e) => setNoteText(e.target.value)}
-              className="flex-1 w-full rounded-xl border border-black/10 dark:border-white/10 bg-black/[0.01] dark:bg-white/[0.02] p-3 text-sm text-foreground outline-none resize-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/20 placeholder:text-muted-foreground/40 transition-all font-sans leading-relaxed"
+              className="flex-1 w-full rounded-xl border border-black/10 dark:border-white/10 bg-black/[0.01] dark:bg-white/[0.02] p-3 text-sm text-foreground outline-none resize-none focus:border-[#7CC4A4]/50 focus:ring-1 focus:ring-[#7CC4A4]/20 placeholder:text-muted-foreground/40 transition-all font-sans leading-relaxed"
               placeholder="اكتب ملاحظاتك هنا..."
             />
           </div>
@@ -296,7 +296,7 @@ function InteractiveReaderDialog({
                 t("materials.autoSave") || "مسودة المذاكرة"
               )}
             </span>
-            <Button size="sm" onClick={handleSaveNote} className="gap-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold">
+            <Button size="sm" onClick={handleSaveNote} className="gap-1 bg-[#7CC4A4] hover:bg-[#5BA882] text-white font-bold">
               <Save className="h-3.5 w-3.5" />
               {t("common.save") || "حفظ"}
             </Button>
@@ -412,7 +412,7 @@ export function MaterialsPage({ readOnly = false }: { readOnly?: boolean }) {
                 <Card className="group h-full">
                   <div className="flex h-full flex-col p-5">
                     <div className="mb-3 flex items-start justify-between">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white shadow-glow-sm">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#7CC4A4] to-[#5BA882] text-white shadow-glow-sm">
                         <Icon className="h-5 w-5" />
                       </div>
                       {!readOnly && (
@@ -438,7 +438,7 @@ export function MaterialsPage({ readOnly = false }: { readOnly?: boolean }) {
                       <button
                         type="button"
                         onClick={() => setSelectedReaderMaterial(m)}
-                        className="mt-auto inline-flex items-center gap-1.5 pt-3 text-sm font-medium text-violet-400 hover:text-indigo-400 transition-colors text-start w-fit"
+                        className="mt-auto inline-flex items-center gap-1.5 pt-3 text-sm font-medium text-[#7CC4A4] hover:text-[#5BA882] transition-colors text-start w-fit"
                       >
                         <BookOpen className="h-4 w-4" />
                         <span>{t("materials.interactiveRead") || "قراءة تفاعلية وملاحظات"}</span>
@@ -449,7 +449,7 @@ export function MaterialsPage({ readOnly = false }: { readOnly?: boolean }) {
                         href={m.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="mt-auto inline-flex items-center gap-1.5 pt-3 text-sm font-medium text-violet-300 hover:text-violet-200"
+                        className="mt-auto inline-flex items-center gap-1.5 pt-3 text-sm font-medium text-[#7CC4A4]/70 hover:text-[#7CC4A4]"
                       >
                         <ExternalLink className="h-4 w-4" />
                         {t("materials.open")}

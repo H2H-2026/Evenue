@@ -142,7 +142,7 @@ export function SidebarContent({
                     "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all",
                     collapsed && "justify-center px-0",
                     isActive
-                      ? "bg-gradient-to-r from-indigo-500/90 to-violet-500/90 text-white shadow-glow-sm"
+                      ? "bg-gradient-to-r from-[#7CC4A4]/90 to-[#5BA882]/90 text-white shadow-glow-sm"
                       : "text-muted-foreground hover:bg-black/5 dark:hover:bg-white/5 hover:text-foreground",
                   )
                 }
@@ -158,15 +158,15 @@ export function SidebarContent({
       {user && (
         <div className="border-t border-black/5 dark:border-white/10 p-4">
           {!collapsed ? (
-            <div className="rounded-2xl border border-indigo-500/10 dark:border-white/10 bg-gradient-to-br from-indigo-50/40 via-violet-50/40 to-fuchsia-50/20 dark:from-white/[0.02] dark:to-white/[0.04] p-3.5 shadow-[0_8px_24px_rgba(99,102,241,0.06)] dark:shadow-none hover:border-indigo-500/20 dark:hover:bg-white/[0.06] transition-all">
+            <div className="rounded-2xl border border-[#7CC4A4]/10 dark:border-white/10 bg-gradient-to-br from-[#7CC4A4]/10 via-[#5BA882]/10 to-[#4A9068]/5 dark:from-white/[0.02] dark:to-white/[0.04] p-3.5 shadow-[0_8px_24px_rgba(124,196,164,0.08)] dark:shadow-none hover:border-[#7CC4A4]/20 dark:hover:bg-white/[0.06] transition-all">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-base font-bold text-white shadow-glow-sm">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#7CC4A4] to-[#5BA882] text-base font-bold text-white shadow-glow-sm">
                   {user.fullName.charAt(0)}
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-bold text-foreground">{user.fullName}</p>
                   <p className="truncate text-[10px] text-muted-foreground/80">{user.email}</p>
-                  <span className="inline-flex items-center rounded-full bg-indigo-500/10 dark:bg-violet-500/20 px-2 py-0.5 text-[9px] font-semibold text-indigo-700 dark:text-violet-300 border border-indigo-500/15 dark:border-violet-500/30 mt-1.5">
+                  <span className="inline-flex items-center rounded-full bg-[#7CC4A4]/10 dark:bg-[#5BA882]/20 px-2 py-0.5 text-[9px] font-semibold text-[#4A9068] dark:text-[#7CC4A4] border border-[#7CC4A4]/15 dark:border-[#5BA882]/30 mt-1.5">
                     {t(`roles.${user.role}`)}
                   </span>
                 </div>
@@ -175,7 +175,7 @@ export function SidebarContent({
                 <NavLink
                   to={`/${user.role}/profile`}
                   onClick={onNavigate}
-                  className="flex flex-1 items-center justify-center gap-1 rounded-lg bg-indigo-50/80 hover:bg-indigo-100/80 border border-indigo-100/50 text-indigo-700 dark:bg-white/5 dark:text-foreground dark:hover:bg-white/10 dark:border-transparent px-2 py-1.5 text-xs font-bold transition-all"
+                  className="flex flex-1 items-center justify-center gap-1 rounded-lg bg-[#7CC4A4]/10 hover:bg-[#7CC4A4]/20 border border-[#7CC4A4]/20 text-[#4A9068] dark:bg-white/5 dark:text-foreground dark:hover:bg-white/10 dark:border-transparent px-2 py-1.5 text-xs font-bold transition-all"
                 >
                   <UserCircle className="h-3.5 w-3.5" />
                   {t("topbar.profile")}
@@ -191,8 +191,8 @@ export function SidebarContent({
               </div>
             </div>
           ) : (
-            <div className="flex flex-col items-center gap-3 rounded-2xl border border-indigo-500/10 dark:border-white/10 bg-gradient-to-b from-indigo-50/40 to-violet-50/40 dark:from-white/[0.02] dark:to-white/[0.04] p-2 hover:bg-indigo-50/80 dark:hover:bg-white/[0.06] shadow-[0_4px_12px_rgba(99,102,241,0.04)] dark:shadow-none transition-all">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-xs font-bold text-white shadow-glow-sm">
+            <div className="flex flex-col items-center gap-3 rounded-2xl border border-[#7CC4A4]/10 dark:border-white/10 bg-gradient-to-b from-[#7CC4A4]/10 to-[#5BA882]/10 dark:from-white/[0.02] dark:to-white/[0.04] p-2 hover:bg-[#7CC4A4]/10 dark:hover:bg-white/[0.06] shadow-[0_4px_12px_rgba(124,196,164,0.06)] dark:shadow-none transition-all">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#7CC4A4] to-[#5BA882] text-xs font-bold text-white shadow-glow-sm">
                 {user.fullName.charAt(0)}
               </div>
               <button

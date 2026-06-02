@@ -4,12 +4,12 @@
 
 @layer base {
   :root {
-    /* Heart to Heart Brand Colors */
+    /* Evenue Brand Colors - Mint Green Primary */
     --background: 37 33% 96%; /* Cream #F8F5F0 */
     --foreground: 0 0% 7%; /* Black #111111 */
     --card: 0 0% 100%;
     --card-foreground: 0 0% 7%;
-    --primary: 345 73% 40%; /* H2H Red #B31B3D */
+    --primary: 153 40% 63%; /* Mint Green #7CC4A4 */
     --primary-foreground: 0 0% 100%;
     --secondary: 37 20% 92%;
     --secondary-foreground: 0 0% 15%;
@@ -17,14 +17,14 @@
     --muted-foreground: 0 0% 40%;
     --accent: 195 38% 66%; /* H2H Blue #8BB8C8 */
     --accent-foreground: 0 0% 7%;
-    --destructive: 345 73% 40%; /* Same as primary red */
+    --destructive: 345 73% 40%; /* H2H Red for destructive */
     --destructive-foreground: 0 0% 100%;
     --border: 37 15% 85%;
     --input: 37 15% 85%;
-    --ring: 345 73% 40%; /* H2H Red */
+    --ring: 153 40% 63%; /* Mint Green */
     --radius: 0.75rem;
     
-    /* H2H Extended Palette */
+    /* Extended Palette */
     --h2h-red: 345 73% 40%;
     --h2h-blue: 195 38% 66%;
     --h2h-yellow: 48 89% 62%;
@@ -38,7 +38,7 @@
     --foreground: 37 33% 96%; /* Cream #F8F5F0 */
     --card: 0 0% 10%;
     --card-foreground: 37 33% 96%;
-    --primary: 345 73% 45%; /* H2H Red slightly lighter */
+    --primary: 153 40% 55%; /* Mint Green slightly lighter */
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 15%;
     --secondary-foreground: 37 33% 96%;
@@ -50,7 +50,7 @@
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 345 73% 45%;
+    --ring: 153 40% 55%;
   }
 
   * {
@@ -88,14 +88,14 @@
       inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
   }
 
-  /* نص بتدرّج العلامة Heart to Heart */
+  /* نص بتدرّج العلامة Evenue */
   .text-gradient {
-    @apply bg-gradient-to-br from-[#B31B3D] via-[#8BB8C8] to-[#7CC4A4] bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-[#7CC4A4] via-[#5BA882] to-[#4A9068] bg-clip-text text-transparent;
   }
 
-  /* توهج العنصر - H2H Red Glow */
+  /* توهج العنصر - Mint Green Glow */
   .glow-ring {
-    box-shadow: 0 0 0 1px hsl(var(--border)), 0 10px 40px -10px hsl(345 73% 40% / 0.4);
+    box-shadow: 0 0 0 1px hsl(var(--border)), 0 10px 40px -10px hsl(153 40% 63% / 0.4);
   }
 }
 
@@ -120,7 +120,7 @@
     height: 38rem;
     top: -10rem;
     inset-inline-start: -8rem;
-    background: radial-gradient(circle at center, #B31B3D, transparent 65%);
+    background: radial-gradient(circle at center, #7CC4A4, transparent 65%);
     animation: aurora 18s ease-in-out infinite;
   }
   .aurora-bg::after {
@@ -128,7 +128,7 @@
     height: 34rem;
     bottom: -12rem;
     inset-inline-end: -6rem;
-    background: radial-gradient(circle at center, #8BB8C8, transparent 65%);
+    background: radial-gradient(circle at center, #5BA882, transparent 65%);
     animation: aurora 22s ease-in-out infinite reverse;
   }
   .no-scrollbar::-webkit-scrollbar {
@@ -174,14 +174,14 @@
     animation: laser-scan 2.5s infinite ease-in-out;
   }
 
-  /* تأثير تفاعلي فاخر للكروت - H2H Brand */
+  /* تأثير تفاعلي فاخر للكروت - Mint Green */
   .hover-glow-card {
     transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
   }
   .hover-glow-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(179, 27, 61, 0.3);
-    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.15), 0 0 15px -3px rgba(179, 27, 61, 0.2);
+    border-color: rgba(124, 196, 164, 0.3);
+    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.15), 0 0 15px -3px rgba(124, 196, 164, 0.2);
   }
   /* تنسيقات الطباعة العامة للتطبيق */
   @media print {
