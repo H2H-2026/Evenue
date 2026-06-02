@@ -99,7 +99,7 @@ export function VenuesPage() {
               <Card className="group h-full">
                 <div className="flex h-full flex-col p-5">
                   <div className="mb-3 flex items-start justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white shadow-glow-sm">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#7CC4A4] to-[#5BA882] text-white shadow-glow-sm">
                       <Building2 className="h-5 w-5" />
                     </div>
                     <div className="flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
@@ -125,7 +125,7 @@ export function VenuesPage() {
                     </p>
                   )}
                   {v.capacity != null && (
-                    <p className="mt-auto flex items-center gap-1.5 pt-3 text-sm text-violet-300">
+                    <p className="mt-auto flex items-center gap-1.5 pt-3 text-sm text-[#7CC4A4]/70">
                       <Users className="h-4 w-4" />
                       {v.capacity}
                     </p>

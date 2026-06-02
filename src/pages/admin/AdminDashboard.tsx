@@ -98,8 +98,8 @@ export function AdminDashboard() {
               <AreaChart data={weeklyData}>
                 <defs>
                   <linearGradient id="attFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#8b5cf6" stopOpacity={0.6} />
-                    <stop offset="100%" stopColor="#8b5cf6" stopOpacity={0.02} />
+                    <stop offset="0%" stopColor="#7CC4A4" stopOpacity={0.6} />
+                    <stop offset="100%" stopColor="#7CC4A4" stopOpacity={0.02} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -113,7 +113,7 @@ export function AdminDashboard() {
                     color: "hsl(var(--foreground))",
                   }}
                 />
-                <Area type="monotone" dataKey="value" stroke="#a78bfa" strokeWidth={2.5} fill="url(#attFill)" />
+                <Area type="monotone" dataKey="value" stroke="#5BA882" strokeWidth={2.5} fill="url(#attFill)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>

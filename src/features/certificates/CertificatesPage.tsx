@@ -122,14 +122,14 @@ export function CertificatesPage({ readOnly = false, participantId }: { readOnly
               display: flex;
               flex-direction: column;
               justify-content: space-between;
-              border: 16px double #6366f1;
+              border: 16px double #7CC4A4;
               box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             }
             .certificate-container::before {
               content: "";
               position: absolute;
               top: 0; left: 0; right: 0; bottom: 0;
-              border: 2px solid #8b5cf6;
+              border: 2px solid #5BA882;
               margin: 4px;
               pointer-events: none;
             }
@@ -138,7 +138,7 @@ export function CertificatesPage({ readOnly = false, participantId }: { readOnly
               margin-top: 1.5rem;
             }
             .brand-logo {
-              color: #4f46e5;
+              color: #5BA882;
               font-size: 2.25rem;
               font-weight: 900;
               letter-spacing: -0.05em;
@@ -159,7 +159,7 @@ export function CertificatesPage({ readOnly = false, participantId }: { readOnly
             .recipient-name {
               font-size: 2.75rem;
               font-weight: 900;
-              color: #6366f1;
+              color: #7CC4A4;
               margin: 1rem 0;
               border-bottom: 2px dashed #cbd5e1;
               display: inline-block;
